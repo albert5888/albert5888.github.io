@@ -27,7 +27,7 @@ description: >-                        # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://albert5888.github.io'
 
 github:
   username: albert5888             # change to your github username
@@ -46,7 +46,7 @@ social:
     - https://github.com/albert5888       # change to your github homepage
     # Uncomment below to add more social links
     - https://www.facebook.com/albert5888
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/albert5888/
 
 google_site_verification:               # fill in to your verification string
 
@@ -87,10 +87,10 @@ avatar:
 toc: true
 
 comments:
-  active:         # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  active: disqus        # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
   disqus:
-    shortname:    # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: albert5888   # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   # utterances settings › https://utteranc.es/
   utterances:
     repo:         # <gh-username>/<repo>
