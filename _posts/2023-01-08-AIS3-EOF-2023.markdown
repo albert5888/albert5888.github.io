@@ -5,10 +5,20 @@ date: 2023-01-08 +0800
 categories: CTF
 ---
 
-### Misc
+## Misc
 
-### Web
+### Washer
 
-### 小節
+### Execgen
+
+
+## Web
+
+### Share
+
+### Gist
+
+
+## 小節
 再接再勵ㄅQQ
 ![](https://i.imgur.com/Yqnd2ce.png)
