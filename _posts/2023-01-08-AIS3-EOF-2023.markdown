@@ -78,3 +78,9 @@ hp_value auto_prepend_file .htaccess
 ## 小節
 再接再勵ㄅQQ
 ![](https://i.imgur.com/Yqnd2ce.png)
+
+
+
+ img[src*='#left'] {
+ float: left;
+}
