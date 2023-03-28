@@ -17,7 +17,7 @@ categories: CTF
 ### Share
 網站提供上傳zip檔案
 
-![](https://i.imgur.com/FrnF7gx.png)
+![](https://i.imgur.com/FrnF7gx.png){:h="50%" w="50%"}
 
 Source
 檢查zip內是否包含index.html,並將內容放到/static/<username>/index.html
