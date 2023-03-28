@@ -9,9 +9,9 @@ categories: CTF
 
 ### Washer
 nc畫面
-
-![](https://i.imgur.com/5TXNu9F.png)
+ 
 <img align="left" src="https://i.imgur.com/5TXNu9F.png">
+
 隨機生成6個字元，路徑為/tmp/<random*6>
 
 ![](https://i.imgur.com/LkHgvkj.png)
