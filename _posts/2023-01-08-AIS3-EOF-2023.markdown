@@ -10,19 +10,19 @@ categories: CTF
 ### Washer
 nc畫面
 
-![](https://i.imgur.com/5TXNu9F.png)
+<div align="left">![](https://i.imgur.com/5TXNu9F.png)
 
 隨機生成6個字元，路徑為/tmp/<random*6>
 
-![](https://i.imgur.com/LkHgvkj.png)
+<div align="left">![](https://i.imgur.com/LkHgvkj.png)
 
 1.是輸入的內容寫到/tmp/<random*6>
 2.是讀出來
 3.是將輸入的指定檔案的路徑，並執行
 
-![](https://i.imgur.com/uADO6YZ.png)
+<div align="left">![](https://i.imgur.com/uADO6YZ.png)
 
-![](https://i.imgur.com/zIZyqd6.png)
+<div align="left">![](https://i.imgur.com/zIZyqd6.png)
 
 ```
 1
