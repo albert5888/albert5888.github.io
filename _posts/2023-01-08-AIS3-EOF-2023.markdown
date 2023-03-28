@@ -16,11 +16,11 @@ nc畫面
 
 ![](https://i.imgur.com/LkHgvkj.png)
 
-1.是輸入的內容寫到/tmp/<random*6>
+選項1是輸入的內容寫到/tmp/<random*6>
 
-2.是讀出來
+選項2是讀出來
 
-3.是將輸入的指定檔案的路徑，並執行
+選項3是將輸入的指定檔案的路徑，並執行
 
 ![](https://i.imgur.com/uADO6YZ.png)
 
@@ -31,7 +31,7 @@ nc畫面
 ```
 選擇1
 cat${IFS}/flag
-選擇2
+選擇3
 /tmp/<random*6>
 ```
 
