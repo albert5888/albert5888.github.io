@@ -39,7 +39,11 @@ cat${IFS}/flag
 
 ![](https://i.imgur.com/4y2eNG0.png)
 
-輸入的內容會變成，#!<你輸入的內容>(created by execgen)，然後執行這個script
+輸入的內容會變成下面這樣，然後執行這個script
+
+```
+#!<你輸入的內容>(created by execgen)
+```
 
 ![](https://i.imgur.com/MjDD8Wj.png)
 
