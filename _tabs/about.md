@@ -43,7 +43,7 @@ $ cat /home/albert5888/interest
 
 ### 2019
 - 9月
-    - 50th全國技能競賽-資訊與網路技術 - 3rd
+    - 49th全國技能競賽-資訊與網路技術 - 3rd
 
 ---
 # Contact me
