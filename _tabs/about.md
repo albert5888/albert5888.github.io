@@ -46,6 +46,13 @@ $ cat /home/albert5888/interest
     - 49th全國技能競賽-資訊與網路技術 - 3rd
 
 ---
+# Bug Bounty
+- Dcard
+- 台灣電力公司
+- 露天拍賣
+- 國立臺灣大學醫學院附設醫院雲林分院
+
+---
 # Contact me
 [Facebook](https://www.facebook.com/albert5888/)    
 [Hitcon Zeroday](https://zeroday.hitcon.org/user/wfu030916/vulnerability)
