@@ -21,6 +21,8 @@ $ cat /home/albert5888/interest
 ---
 # Reward
 ### 2023
+- 5月
+    - AIS3-Pre-exam - 56rd
 - 1月
     - AIS3-EOF - 43rd
 
