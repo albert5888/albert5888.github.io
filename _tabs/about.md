@@ -10,7 +10,7 @@ $ whoami
     Name            =   'Ye, Li-Cheng'
     NickName_en     =   'albert5888'
     NickName_zh-tw  =   '寶哥'
-    School          =   'NKUST_MIS_2'
+    School          =   'NKUST'
 }
 
 $ cat /home/albert5888/interest
@@ -58,6 +58,3 @@ $ cat /home/albert5888/interest
 - MOPCON 2022
 
 ---
-# Contact me
-[Facebook](https://www.facebook.com/albert5888/)    
-[Hitcon Zeroday](https://zeroday.hitcon.org/user/wfu030916/vulnerability)
