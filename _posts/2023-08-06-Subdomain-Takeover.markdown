@@ -40,19 +40,19 @@ subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 
  - Starbucks
 
-https://hackerone.com/reports/276269
+[https://hackerone.com/reports/276269](https://hackerone.com/reports/276269)
 
  - Uber
 
-https://hackerone.com/reports/219205
+[https://hackerone.com/reports/219205](https://hackerone.com/reports/219205)
 
  - Snapchat
 
-https://hackerone.com/reports/154425
+[https://hackerone.com/reports/154425](https://hackerone.com/reports/154425)
 
  - Twitter
 
-https://hackerone.com/reports/32825
+[https://hackerone.com/reports/32825](https://hackerone.com/reports/32825)
 
 ## Ref
  - [Wikipeda - CNAME](https://zh.wikipedia.org/zh-tw/CNAME%E8%AE%B0%E5%BD%95_)
