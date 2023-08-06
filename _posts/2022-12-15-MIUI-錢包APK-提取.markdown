@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Miui-錢包APK-提取"
+title: "[MIUI] 錢包APK-提取"
 date: 2022-12-15 +0800
-categories: Miui
+categories: MIUI
 ---
 ### 檔案提取準備
 1. 卡刷包 : payload.bin提取 --> system.img提取
