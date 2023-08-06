@@ -17,6 +17,7 @@ hidden: false
 
 這時我們就可以趁虛而入註冊一個相同名稱的雲端服務的主機，導致Subdomain-Takeover
 
+---
 
 例如 : 
 
@@ -28,6 +29,7 @@ subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 
 這時subdomain.albert5888.tw就會顯示其他人的內容
 
+---
 
 ## 工具檢測
 這個工具[Github-sub404](https://github.com/r3curs1v3-pr0xy/sub404)可以幫我們協助發現這些漏洞
@@ -36,23 +38,27 @@ subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 
 但是這項工具有些誤差，就算列舉出有問題的subdoomain，還是需要實際在網路上驗證是否可以註冊
 
+---
+
 ## 相關Bug Bounty Reports
 
  - Starbucks
 
-[https://hackerone.com/reports/276269](https://hackerone.com/reports/276269)
+    [https://hackerone.com/reports/276269](https://hackerone.com/reports/276269)
 
  - Uber
 
-[https://hackerone.com/reports/219205](https://hackerone.com/reports/219205)
+    [https://hackerone.com/reports/219205](https://hackerone.com/reports/219205)
 
  - Snapchat
 
-[https://hackerone.com/reports/154425](https://hackerone.com/reports/154425)
+    [https://hackerone.com/reports/154425](https://hackerone.com/reports/154425)
 
  - Twitter
 
-[https://hackerone.com/reports/32825](https://hackerone.com/reports/32825)
+    [https://hackerone.com/reports/32825](https://hackerone.com/reports/32825)
+
+---
 
 ## Ref
  - [Wikipeda - CNAME](https://zh.wikipedia.org/zh-tw/CNAME%E8%AE%B0%E5%BD%95_)
