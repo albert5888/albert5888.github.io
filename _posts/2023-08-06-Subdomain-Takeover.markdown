@@ -7,6 +7,7 @@ hidden: false
 ---
 
 ## 原理
+
 平常我們通過DNS解析會取得一個IP
 
 但我們有時也會設定CNAME，將結果設定為一個domain
@@ -32,6 +33,7 @@ subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 ---
 
 ## 工具檢測
+
 這個工具[Github-sub404](https://github.com/r3curs1v3-pr0xy/sub404)可以幫我們協助發現這些漏洞
 
 透過subfinder、sublister列舉出subdomain，再透過DNS查詢是否指向空的CNAME
@@ -61,5 +63,7 @@ subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 ---
 
 ## Ref
+
  - [Wikipeda - CNAME](https://zh.wikipedia.org/zh-tw/CNAME%E8%AE%B0%E5%BD%95_)
+ 
  - [Github - sub404](https://github.com/r3curs1v3-pr0xy/sub404)
