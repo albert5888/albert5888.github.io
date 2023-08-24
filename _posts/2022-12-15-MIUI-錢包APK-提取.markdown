@@ -25,7 +25,7 @@ categories: MIUI
 
 ### ADB提取(推薦)
 
-```
+```shell
 mkdir  ~/apps
 cd ~/apps
 adb pull "/system/app" ./apps

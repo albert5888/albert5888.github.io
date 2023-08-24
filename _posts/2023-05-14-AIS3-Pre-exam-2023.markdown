@@ -20,7 +20,7 @@ FLAG就在PDF
 
 Source code
 
-```
+```python
 import os
 import base64
 from cryptography.fernet import Fernet
@@ -46,7 +46,7 @@ print("Encrypted data:",ciphertext)
 
 decrypt
 
-```
+```python
 import base64
 from cryptography.fernet import Fernet
 from Crypto.Hash import SHA256

