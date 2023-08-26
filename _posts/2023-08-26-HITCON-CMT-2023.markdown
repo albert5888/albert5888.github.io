@@ -42,7 +42,7 @@ hidden: false
 
 有一題還貼在樓梯旁，讓我找超久XD。
 
-![](https://i.imgur.com/UnO6VyV.png){:h="20%" w="20%"} ![](https://i.imgur.com/SNFezdE.jpg){:h="25%" w="25%"}
+![](https://i.imgur.com/UnO6VyV.png){:h="20%" w="20%"}![](https://i.imgur.com/SNFezdE.jpg){:h="25%" w="25%"}
 
 
 #### Re:CTF
