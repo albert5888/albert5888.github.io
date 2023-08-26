@@ -42,13 +42,14 @@ hidden: false
 
 有一題還貼在樓梯旁，讓我找超久XD。
 
-![](https://i.imgur.com/UnO6VyV.png){:h="25%" w="25%"}
+![](https://i.imgur.com/UnO6VyV.png){:h="20%" w="20%"} ![](https://i.imgur.com/SNFezdE.jpg){:h="25%" w="25%"}
 
 
 #### Re:CTF
 
 這次有Re:CTF的活動，是復刻以前經典CTF題目，在day2還有交流的活動可以上台分享解題過程，而且(//●⁰౪⁰●)//我也有分享歐，還有送小獎品 ([分享的PPT](https://github.com/albert5888/albert5888.github.io/blob/main/_data/ReCTF.pdf)) ([其他題目的Writeup](https://albert5888.github.io/posts/HITCON-2023-ReCTF/))。
 
+![](https://i.imgur.com/4FxBDUo.jpg){:h="25%" w="25%"}
 
 #### 攤位
 
