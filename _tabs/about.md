@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 4
+order: 3
 ---
 
 ```
@@ -51,10 +51,12 @@ $ cat /home/albert5888/interest
 # Bug Bounty
 - Dcard
 - 台灣電力公司
-- 國立臺東大學
 
 ---
+# Member
+- 臺灣好厲駭 - 8th
+
 # Attend
 - MOPCON 2022
-
+- HITCON 2023
 ---
