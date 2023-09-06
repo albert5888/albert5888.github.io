@@ -48,15 +48,25 @@ $ cat /home/albert5888/interest
     - 49th全國技能競賽-資訊與網路技術 - 3rd
 
 ---
+
 # Bug Bounty
-- Dcard
+- [Dcard](https://www.dcard.tw/hacker)
+    - BAC
+    - SSTI
+    - Open Redirect
+
 - 台灣電力公司
+    - XSS
 
 ---
+
 # Member
 - 臺灣好厲駭 - 8th
+
+---
 
 # Attend
 - MOPCON 2022
 - HITCON 2023
+
 ---
