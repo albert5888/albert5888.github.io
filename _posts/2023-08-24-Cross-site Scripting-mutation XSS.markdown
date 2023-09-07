@@ -5,7 +5,6 @@ date: 2023-08-24 +0800
 categories: Security
 hidden: false
 tags: 
-  - "Security"
   - "XSS"
   - "Cross-site Scripting"
 ---

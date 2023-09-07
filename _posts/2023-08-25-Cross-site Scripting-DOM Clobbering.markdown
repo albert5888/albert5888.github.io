@@ -4,6 +4,9 @@ title: "[Security] Cross-site Scripting (DOM Clobbering)"
 date: 2023-08-25 +0800
 categories: Security
 hidden: false
+tags: 
+  - "XSS"
+  - "Cross-site Scripting"
 ---
 
 ## What is DOM

@@ -4,6 +4,8 @@ title: "[Security] Prototype Pollution"
 date: 2023-09-04 +0800
 categories: Security
 hidden: false
+tags: 
+  - "JS"
 ---
 
 ## ProtoType
