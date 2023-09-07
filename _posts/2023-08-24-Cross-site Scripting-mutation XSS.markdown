@@ -4,6 +4,10 @@ title: "[Security] Cross-site Scripting (mutation XSS)"
 date: 2023-08-24 +0800
 categories: Security
 hidden: false
+tags: 
+  - "Security"
+  - "XSS"
+  - "Cross-site Scripting"
 ---
 
 ## Parser
