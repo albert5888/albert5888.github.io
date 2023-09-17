@@ -110,3 +110,18 @@ tags:
 
 
 ## JSONP
+ - 為了CORS所生的產物
+ - 舉例，透過jsonp動態網址匯入script，收到getData Function，再送到getData()執行
+ ```html
+ function getData(){
+    // some code
+ }
+ <script src = https://albert5888.com/jsonp?catgirl=Maple&callback=getData></script>
+ //response getData({ "name":"Maple", "age":2, "Gender":"Female", "Height":"157cm", "Weight":"51.7kg", "Occupation":"La Soleil employee" })
+ ```
+ - 可能的危害，CSP設定不當，可能會被XSS
+ - 例如
+ ```html
+ <script src=https://accounts.google.com/o/oauth2/revoke?callback=alert(1)></script>
+ ```
+ [JSONBEE](https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt)
