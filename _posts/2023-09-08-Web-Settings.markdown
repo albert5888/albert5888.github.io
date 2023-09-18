@@ -91,6 +91,9 @@ tags:
   - 例如: YouTube就不會設定X-Frame-Options，因為他要讓別人用iframe，來嵌入飲片
 
 ### CSP
+ - 為了防止XSS攻擊 [CSP document](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)
+ - [確認CSP設定](https://csp-evaluator.withgoogle.com/)
+
 
 ### HSTS
   - 為了HTTPS，但首次載入仍會先從HTTP => HTTPS 
