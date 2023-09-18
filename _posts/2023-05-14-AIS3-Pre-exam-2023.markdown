@@ -307,6 +307,10 @@ fetch('/api/login', {
 </svg>
 ```
 
+效果大概是這樣
+
+![](https://i.imgur.com/OnBdVTc.png)
+
 方法2
 
 使用location.href 傳送flag (不受CSP限制)
@@ -325,9 +329,7 @@ fetch('/api/login', {
 
 ![](https://i.imgur.com/s7MSif4.png)
 
-效果大概是這樣
 
-![](https://i.imgur.com/OnBdVTc.png)
 
 ## Gitly
 一個Gitly網頁
