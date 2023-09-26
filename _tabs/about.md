@@ -50,7 +50,7 @@ $ cat /home/albert5888/interest
 ---
 
 # Bug Bounty
-- [Dcard](https://www.dcard.tw/hacker)
+- Dcard ([https://www.dcard.tw/hacker](https://www.dcard.tw/hacker))
     - BAC
     - SSTI
     - Open Redirect
