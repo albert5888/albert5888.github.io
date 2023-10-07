@@ -122,6 +122,16 @@ tags:
   - CORS 削弱 SOP (小心CORS misconfiguration)
   - 由於SOP限制網頁請求，因此有CORS來突破SOP
 
+#### 舉例
+
+ - 我存取https://neko.com/，且有對https://peko.com/進行複雜的請求
+ - 對peko.com設定Access-Control-Allow-Origin
+  ```
+  Access-Control-Allow-Origin: https://neko.com
+  ```
+  - Ref : (https://aws.amazon.com/tw/what-is/cross-origin-resource-sharing/)
+
+
 ### X-XSS-Protection
   - 瀏覽器內建過濾XSS
 
