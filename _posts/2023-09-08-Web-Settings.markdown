@@ -73,7 +73,7 @@ tags:
  - Token 通常包含令牌和簽名，因此在Server當中不須維護用戶會話狀態(無狀態)
  - Cookie 會像是將SessionID等資訊放入Cookie當中，因此在Server當中須維護用戶會話狀態(有狀態)
 
- ### 跨域支援
+### 跨域支援
   - Token 可以在不同domain下互相傳遞
   - Cookie 通常需做其他設定
 
