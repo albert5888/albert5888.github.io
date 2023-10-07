@@ -23,6 +23,8 @@ tags:
  SessionID = 123456
  ```
 
+---
+
 ## Cookie Security
 
 ### 第三方Cookie ?
@@ -61,9 +63,25 @@ tags:
  - 禁止javascript存取Cookie
 
 ### SuperCookies & EverCookies
+ - 這些技術通常是指廣告公司追蹤用戶活動所產生的，特點在於難以刪除這些cookie，會透過各種方式避免刪除
+
+---
 
 ## Token Auth vs Cookie
+ 
+### 驗證方式
+ - Token 通常包含令牌和簽名，因此在Server當中不須維護用戶會話狀態(無狀態)
+ - Cookie 會像是將SessionID等資訊放入Cookie當中，因此在Server當中須維護用戶會話狀態(有狀態)
 
+ ### 跨域支援
+  - Token 可以在不同domain下互相傳遞
+  - Cookie 通常需做其他設定
+
+### 安全性
+  - Token 例如 JWT等
+  - Cookie 有可能透過XSS或CSRF等問題
+
+---
 
 ## SOP (Same-Origin Policy)
  - 瀏覽器專屬，無須設定
@@ -84,6 +102,8 @@ tags:
   // 設定 Secure 只能用 HTTPS 傳送 (只有HTTPS同源)
   Set-Cookie: id=5888; domain=github.io; Secure
   ```
+
+---
 
 ## HTTP Header
 ### X-Frame-Options
@@ -110,7 +130,7 @@ tags:
   - 告訴瀏覽器不要猜測所提供內容的MIME類型，而是信任"Content-Type"標頭
   - 例如: 內容是 \<script\>，但是Content Type是plain/text，就當成是plain/text，防止XSS
 
-
+---
 
 ## JSONP
  - 為了CORS所生的產物
