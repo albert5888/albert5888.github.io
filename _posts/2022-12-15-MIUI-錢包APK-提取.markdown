@@ -33,12 +33,13 @@ adb pull "/system/priv-app" ./apps
 adb pull "/system/data-app" ./apps
 ```
 -  Ref: https://juejin.cn/post/6896743940209410056
+
 ---
 
 ### 核心APK
 
- - com.miui.tsmclient / 小米智慧卡
- - com.mipay.wallet / 小米錢包
+ - 小米智慧卡 / com.miui.tsmclient 
+ - 小米錢包   / com.mipay.wallet 
 
 ---
 -  EU本地化: https://blog.minamigo.moe/archives/184
