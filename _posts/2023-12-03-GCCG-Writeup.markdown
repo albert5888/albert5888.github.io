@@ -3,7 +3,7 @@ layout: post
 title: "[CTF] GCCG Writeup"
 date: 2023-12-03 +0800
 categories: CTF
-hidden: true
+hidden: false
 ---
 
 ## Space game
