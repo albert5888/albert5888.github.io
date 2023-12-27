@@ -108,7 +108,7 @@ tags:
 ## HTTP Header
 ### X-Frame-Options
   - 是否允許這個網頁讓別人使用iframe (Clickjacking)
-  - 例如: YouTube就不會設定X-Frame-Options，因為他要讓別人用iframe，來嵌入飲片
+  - 例如: YouTube就不會設定X-Frame-Options，因為他要讓別人用iframe，來嵌入影片
 
 ### CSP
  - 為了防止XSS攻擊 [CSP document](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)
