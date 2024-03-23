@@ -66,7 +66,7 @@ EX:
 
 \<noscript\>在啟用JS和停用JS的parser是不同的，因此在Sanitize(消毒)的時候是停用JS，當然在Browser當中是啟用的，因此就造成解析不同，造成XSS。
 
-![](https://i.imgur.com/DVBADba.png){:h="80%" w="80%"}
+![](https://i.imgur.com/sHI7nI6.png){:h="80%" w="80%"}
 
 [XSS on Google - Youtube](https://www.youtube.com/watch?v=lG7U3fuNw3A&ab_channel=LiveOverflow)
 
