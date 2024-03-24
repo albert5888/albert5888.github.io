@@ -62,7 +62,7 @@ $ cat /home/albert5888/interest
 
 - 台灣電力公司
     - XSS
-
+    - Execution After Redirect
 
 - Hitcon Zeroday : 
     - [https://zeroday.hitcon.org/user/wfu030916/vulnerability](https://zeroday.hitcon.org/user/wfu030916/vulnerability)
