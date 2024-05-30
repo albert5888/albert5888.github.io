@@ -20,6 +20,14 @@ $ cat /home/albert5888/interest
 ```
 ---
 # Reward
+### 2024
+- 5月
+    - AIS3-Pre-exam - 15rd
+- 3月
+    - 112行政院網路攻防演練 - 第1名
+- 1月
+    - 112年度教育體系資安攻防演練 - 特優
+
 ### 2023
 - 10月
     - 跨國網路攻防演練 - Red Team
@@ -56,12 +64,13 @@ $ cat /home/albert5888/interest
 
 # Bug Bounty
 - Dcard ([https://www.dcard.tw/hacker](https://www.dcard.tw/hacker))
-    - BAC
+    - BAC*3
     - SSTI
     - Open Redirect
+    - Client Information Disclosure
 
-- 台灣電力公司
-    - XSS
+- 台灣電力公司 ([2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/tc/news2_info.aspx?id=6981&chk=eabcae9c-2b46-48ae-9ad4-ee50904bfc42&mid=18))
+    - SQL Injection
     - Execution After Redirect
 
 - Hitcon Zeroday : 
@@ -74,6 +83,7 @@ $ cat /home/albert5888/interest
 
 # Member
 - 臺灣好厲駭 - 8th
+- UCCU
 
 ---
 
