@@ -1,0 +1,46 @@
+---
+layout: post
+title: "[MIUI] 錢包APK-提取"
+date: 2022-12-15 +0800
+categories: MIUI
+---
+### 檔案提取準備
+1. 卡刷包 : payload.bin提取 --> system.img提取
+2. 線刷包 : image --> system.img提取
+3. ADB提取 (Recommend)
+
+---
+### 卡刷包提取
+-  payload.bin解包: https://magiskcn.com/payload-boot
+
+---
+
+### 線刷包提取
+
+-  img解包: https://github.com/KinglyWayne/simg2img_win
+-  img教學: https://jingyan.baidu.com/article/af9f5a2d25913e43140a45bb.html
+-  img教學: http://www.findrom.cn/rom/977.html
+
+---
+
+### ADB提取(推薦)
+
+```shell
+mkdir  ~/apps
+cd ~/apps
+adb pull "/system/app" ./apps
+adb pull "/system/priv-app" ./apps
+adb pull "/system/data-app" ./apps
+```
+-  Ref: https://juejin.cn/post/6896743940209410056
+
+---
+
+### 核心APK
+
+ - 小米智慧卡 / com.miui.tsmclient 
+ - 小米錢包   / com.mipay.wallet 
+
+---
+-  EU本地化: https://blog.minamigo.moe/archives/184
+-  自定義Magisk: https://52huameng.com/zixun/1614
