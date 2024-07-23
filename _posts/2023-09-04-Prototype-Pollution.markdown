@@ -56,19 +56,19 @@ JS有一個屬性叫做__proto__，他是假如在這個Object找不到，就往
 ```javascript
 let user = {username:"admin"};
 Object.defineProperty(user,'username', {configurable:false,writable:false} ); //protect
-user.username = 'hacker';    //pollution failed
+user.username = 'hacker';    //直接修改值
 console.log(user.username);  //admin
 ```
 
-Bypass
+使用Prototype pollution 
 ```javascript
 Object.prototype.value='hacker'; //pollution 
 let user = {username:"admin"};
 Object.defineProperty(user,'username', {configurable:false,writable:false} ); //protect
-console.log(user.username);  //admin
+console.log(user.username);  //hacker
 ```
 
-正確
+正確使用
 ```javascript
 Object.prototype.value='hacker'; //pollution failed
 
@@ -78,8 +78,6 @@ Object.defineProperty(user, 'username', {
    configurable:false,
    writable:false
 })
-
-user.username = 'hacker';    //pollution failed
 
 console.log(user.username)
 
