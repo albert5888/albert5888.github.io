@@ -67,7 +67,7 @@ $ cat /home/albert5888/interest
     - Open Redirect
     - Client Information Disclosure
 
-- 台灣電力公司 ([2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/tc/news2_info.aspx?id=6981&chk=eabcae9c-2b46-48ae-9ad4-ee50904bfc42&mid=18))
+- 台灣電力公司 ([2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/2289/2323/2334/49686/))
     - SQL Injection
     - Execution After Redirect
 
