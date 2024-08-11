@@ -82,11 +82,11 @@ $ cat /home/albert5888/interest
 # Certificate
 - OffSec Certified Professional (OSCP)
 
-![](https://github.com/albert5888/albert5888.github.io/blob/main/_data/OSCP.png){:h="70%" w="70%"}
+![](https://raw.githubusercontent.com/albert5888/albert5888.github.io/main/_data/OSCP.png){:h="70%" w="70%"}
 
 - Certified in Cybersecurity (CC)
 
-![](https://github.com/albert5888/albert5888.github.io/blob/main/_data/CC.png){:h="70%" w="70%"}
+![](https://raw.githubusercontent.com/albert5888/albert5888.github.io/main/_data/CC.png){:h="70%" w="70%"}
 
 
 ---
