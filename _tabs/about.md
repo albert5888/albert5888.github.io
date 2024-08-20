@@ -71,6 +71,13 @@ $ cat /home/albert5888/interest
     - SQL Injection
     - Execution After Redirect
 
+- 綠界科技ECPAY ([安全漏洞回報致謝](https://corp.ecpay.com.tw/bug-bounty-fame/))
+    - Cross-Site Request Forgery
+    - Insecure Design
+    - Improper Input Validation
+    - Cross-Site Scripting * 2
+    - Broken Access Control + Stored XSS
+
 - Hitcon Zeroday : 
     - [https://zeroday.hitcon.org/user/wfu030916/vulnerability](https://zeroday.hitcon.org/user/wfu030916/vulnerability)
 
