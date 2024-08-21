@@ -62,10 +62,17 @@ $ cat /home/albert5888/interest
 
 # Bug Bounty
 - Dcard ([https://www.dcard.tw/hacker](https://www.dcard.tw/hacker))
-    - BAC*3
-    - SSTI
-    - Open Redirect
-    - Client Information Disclosure
+    -	Open Redirect
+    -	Broken Access Control
+    -	Broken Access Control
+    -	Client Information Disclosure
+    -	Server Side Template Injection
+    -	Broken Access Control
+    -	Sensitive Information Disclosure
+    -	Broken Access Control
+    -	Social Engineering Risk in Design
+    -	Improper Input Validation
+    -	Broken Access Control
 
 - 台灣電力公司 ([2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/2289/2323/2334/49686/))
     - SQL Injection
