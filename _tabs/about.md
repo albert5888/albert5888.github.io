@@ -19,6 +19,8 @@ $ cat /home/albert5888/interest
 ---
 # Reward
 ### 2024
+- 10月
+    - 金盾獎 - 入圍決賽
 - 5月
     - AIS3-Pre-exam - 15rd
 
