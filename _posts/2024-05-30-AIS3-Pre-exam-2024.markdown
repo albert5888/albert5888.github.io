@@ -269,9 +269,9 @@ print()
 <description>
     <title-info>
         <genre>antique</genre>
-        <author><first-name></first-name><last-name>&xxe;</last-name></author>
-        <book-title>&xxe;</book-title>
-        <lang>&xxe;</lang>
+        <author><first-name></first-name><last-name>\&xxe;</last-name></author>
+        <book-title>\&xxe;</book-title>
+        <lang>\&xxe;</lang>
     </title-info>
     <document-info>
         <author><first-name></first-name><last-name>Unknown</last-name></author>
