@@ -20,7 +20,7 @@ hidden: false
 
 ---
 
-例如 : 
+例如 :
 
 subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 
@@ -40,7 +40,7 @@ subdomain.albert5888.tw 使用CNAME指向 cloudalbert5888.azurewebsites.net
 
 但是這項工具有些誤差，就算列舉出有問題的subdoomain，還是需要實際在網路上驗證是否可以註冊
 
-![](https://i.imgur.com/6L8zSLW.png)
+![](/images/2023/08/6L8zSLW.png)
 
 ---
 

