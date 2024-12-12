@@ -4,7 +4,7 @@ title: "[Security] Prototype Pollution"
 date: 2023-09-04 +0800
 categories: Security
 hidden: false
-tags: 
+tags:
   - "JS"
 ---
 
@@ -37,7 +37,7 @@ console.log(array1.toString());  //"cat,dog"
 
 JS有一個屬性叫做__proto__，他是假如在這個Object找不到，就往上找的位置。
 
-![](https://i.imgur.com/GEQpFMa.png)
+![](/images/2023/09/GEQpFMa.png)
 
 他們的根都是NULL
 
@@ -47,7 +47,7 @@ JS有一個屬性叫做__proto__，他是假如在這個Object找不到，就往
 "".__proto__.__proto__.__proto__    // null
 ```
 
-![](https://i.imgur.com/oQ5f72k.png)
+![](/images/2023/09/oQ5f72k.png)
 
 
 ## Protect
@@ -60,9 +60,9 @@ user.username = 'hacker';    //直接修改值
 console.log(user.username);  //admin
 ```
 
-使用Prototype pollution 
+使用Prototype pollution
 ```javascript
-Object.prototype.value='hacker'; //pollution 
+Object.prototype.value='hacker'; //pollution
 let user = {username:"admin"};
 Object.defineProperty(user,'username', {configurable:false,writable:false} ); //protect
 console.log(user.username);  //hacker
