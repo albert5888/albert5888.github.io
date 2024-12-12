@@ -97,7 +97,7 @@ $ cat /home/albert5888/interest
 
 - Certified in Cybersecurity (CC)
 
-![](https://raw.githubusercontent.com/albert5888/albert5888.github.io/main/_data/CC.png){:h="70%" w="70%"}
+![](/images/about/CC.png){:h="70%" w="70%"}
 
 
 ---
