@@ -156,13 +156,16 @@ cd flag;p:| python *
 
 - 大致上是一開始有4段buffer，每段8個字的flag
 - 先去和一些hex做XOR
+
 ![](/images/2024/05/SJZkvPgVR.png)
 
 - 再去做complex_function，比對是否為
+
 ![](/images/2024/05/BkaGvveNC.png)
 
 
 - main func
+
 ![](/images/2024/05/S1zKLDgE0.png)
 
 - `decode.py`
