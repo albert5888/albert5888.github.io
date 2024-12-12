@@ -107,7 +107,7 @@ $ cat /home/albert5888/interest
 ---
 
 # Attend
+- HITCON 2023 / 2024
 - MOPCON 2022
-- HITCON 2023
 
 ---
