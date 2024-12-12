@@ -47,7 +47,7 @@ hidden: false
 
 #### Re:CTF
 
-這次有Re:CTF的活動，是復刻以前經典CTF題目，在day2還有交流的活動可以上台分享解題過程，而且(//●⁰౪⁰●)//我也有分享歐，還有送小獎品 ([分享的PPT](https://github.com/albert5888/albert5888.github.io/blob/main/_data/ReCTF.pdf)) ([其他題目的Writeup](https://albert5888.github.io/posts/HITCON-2023-ReCTF/))。
+這次有Re:CTF的活動，是復刻以前經典CTF題目，在day2還有交流的活動可以上台分享解題過程，而且(//●⁰౪⁰●)//我也有分享歐，還有送小獎品 ([分享的PPT](/files/2023/08/ReCTF.pdf)) ([其他題目的Writeup](https://albert5888.github.io/posts/HITCON-2023-ReCTF/))。
 
 ![](/images/2023/08/4FxBDUo.jpeg){:h="25%" w="25%"}
 
