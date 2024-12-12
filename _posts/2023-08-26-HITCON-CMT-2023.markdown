@@ -11,12 +11,12 @@ hidden: false
 
 這是我第一次參加HITCON，也感謝HITCON有"學生免費專案"，才讓我能參加這次活動。
 
-![](/images/2023/08/T1Yns6P.jpg){:h="80%" w="80%"}
+![](/images/2023/08/T1Yns6P.jpeg){:h="80%" w="80%"}
 
 ### 議程
 
 來說說議程的部分，我寫幾個印象深刻的。
-![](/images/2023/08/zrwu40U.jpg){:h="80%" w="80%"}
+![](/images/2023/08/zrwu40U.jpeg){:h="80%" w="80%"}
 
 #### 新魔法時代 - CmdGPT (Birdman)
 
@@ -49,7 +49,7 @@ hidden: false
 
 這次有Re:CTF的活動，是復刻以前經典CTF題目，在day2還有交流的活動可以上台分享解題過程，而且(//●⁰౪⁰●)//我也有分享歐，還有送小獎品 ([分享的PPT](https://github.com/albert5888/albert5888.github.io/blob/main/_data/ReCTF.pdf)) ([其他題目的Writeup](https://albert5888.github.io/posts/HITCON-2023-ReCTF/))。
 
-![](/images/2023/08/4FxBDUo.jpg){:h="25%" w="25%"}
+![](/images/2023/08/4FxBDUo.jpeg){:h="25%" w="25%"}
 
 #### 攤位
 
