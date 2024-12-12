@@ -37,7 +37,7 @@ https://nraynaud.github.io/webgcode/
 
 - source code
 
-```
+```python
 #!/usr/local/bin/python3
 
 import os
@@ -315,7 +315,7 @@ print()
 
 - 驗證的code
 
-```
+```python
 from PIL import Image, ImageChops
 import hashlib,secrets
 
