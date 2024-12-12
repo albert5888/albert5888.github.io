@@ -21,6 +21,9 @@ $ cat /home/albert5888/interest
 ### 2024
 - 10月
     - 金盾獎 - 入圍決賽
+    - 113年度教育體系資安攻防演練 - 攻防檢測員/特優
+- 8月
+    - 113行政院網路攻防演練 - 攻擊手
 - 5月
     - AIS3-Pre-exam - 15rd
 
@@ -93,11 +96,11 @@ $ cat /home/albert5888/interest
 # Certificate
 - OffSec Certified Professional (OSCP)
 
-![](/images/about/OSCP.png){:h="70%" w="70%"}
+  ![](/images/about/OSCP.png){:h="70%" w="70%"}
 
 - Certified in Cybersecurity (CC)
 
-![](/images/about/CC.png){:h="70%" w="70%"}
+  ![](/images/about/CC.png){:h="70%" w="70%"}
 
 
 ---
