@@ -79,10 +79,10 @@ $ cat /home/albert5888/interest
     -	Insecure Design
     -	Improper Input Validation
     -	Cross-Site Scripting * 2
-    -	Broken Access Control 
-    -	Broken Access Control + Stored XSS 
+    -	Broken Access Control
+    -	Broken Access Control + Stored XSS
 
-- Hitcon Zeroday : 
+- Hitcon Zeroday :
     - [https://zeroday.hitcon.org/user/wfu030916/vulnerability](https://zeroday.hitcon.org/user/wfu030916/vulnerability)
 
 - Hackerone ([https://hackerone.com/albert5888](https://hackerone.com/albert5888)) :
@@ -93,7 +93,7 @@ $ cat /home/albert5888/interest
 # Certificate
 - OffSec Certified Professional (OSCP)
 
-![](https://raw.githubusercontent.com/albert5888/albert5888.github.io/main/_data/OSCP.png){:h="70%" w="70%"}
+![](/images/about/OSCP.png){:h="70%" w="70%"}
 
 - Certified in Cybersecurity (CC)
 
