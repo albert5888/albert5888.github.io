@@ -176,9 +176,9 @@ for i in range(32):
 
 
 
-### final
+### 組合起來
 CGGC{3z_f1r57_qu4r73r_57ruc7ur3s_f0r_53c0nd_m4l1c10u5_7h1rd_0n3_l457_p4r7_15_h1dd3n!}
 
-## result
+## Result
 
 ![](/images/2023/12/yUZ1QOs.png)
