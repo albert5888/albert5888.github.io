@@ -36,6 +36,7 @@ https://nraynaud.github.io/webgcode/
 ### Emoji Console
 
 - source code
+
 ```
 #!/usr/local/bin/python3
 
@@ -84,6 +85,7 @@ if __name__ == '__main__':
 - 方法1
 
 - 因為分號截斷之後，&讓後面背景執行，!不影響執行
+
 ```
 cd flag ;/:$#$%&! cat *
 ```
@@ -100,6 +102,7 @@ cd flag ;/:$#$%&! python *
 
 
 - 執行cd flag，然後執行 p: 再把輸出餵給 cat *
+
 ```
 cd flag;p:| python *
 ```
@@ -163,6 +166,7 @@ cd flag;p:| python *
 ![](/images/2024/05/S1zKLDgE0.png)
 
 - `decode.py`
+
 ```
 a = "DHLIYJEG"
 b = "MZRERYND"
@@ -310,6 +314,7 @@ print()
 - 題目只有黑白，因此每次上傳都有1/2機會。
 
 - 驗證的code
+
 ```
 from PIL import Image, ImageChops
 import hashlib,secrets
