@@ -14,14 +14,14 @@ hidden: false
 
 ### 任意讀取
 - 這是商品的介面 (抱枕好可愛XD)
-    ![](https://i.imgur.com/ewEGoFP.png){:h="80%" w="80%"}
+    ![](/images/2023/08/ewEGoFP.png){:h="80%" w="80%"}
 
 - 這是圖片的連結，可以任意讀取在?file=的地方
     ```url
     https://lab.hackersir.org/uploads?file=b87eedddb23f4993bbc8f25a0def05d2
     ```
 - 在搜尋的地方輸入'，就能在報錯頁面看到source code位置
-    ![](https://i.imgur.com/a5pEizt.png){:h="80%" w="80%"}
+    ![](/images/2023/08/a5pEizt.png){:h="80%" w="80%"}
 
 
 - 有這些source code
@@ -33,18 +33,18 @@ hidden: false
     ```
 
 - 有一個像flag
-    ![](https://i.imgur.com/M8y0Ukp.png){:h="80%" w="80%"}
+    ![](/images/2023/08/M8y0Ukp.png){:h="80%" w="80%"}
 
 ### SQLI
 
 - 查看 item.py，可以sqli
-    !![](https://i.imgur.com/4E2jotG.png){:h="80%" w="80%"}
+    !![](/images/2023/08/4E2jotG.png){:h="80%" w="80%"}
 
 - 嘗試sqli
-    ![](https://i.imgur.com/mdYrOtg.png){:h="80%" w="80%"}
+    ![](/images/2023/08/mdYrOtg.png){:h="80%" w="80%"}
 
 - 成功
-    ![](https://i.imgur.com/lV3RO3w.png){:h="80%" w="80%"}
+    ![](/images/2023/08/lV3RO3w.png){:h="80%" w="80%"}
 
 ## End
 我覺得是一個有趣的小靶機，但是不知道還有沒有其他可以攻擊的地方。
