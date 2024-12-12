@@ -167,7 +167,7 @@ cd flag;p:| python *
 
 - `decode.py`
 
-```
+```python
 a = "DHLIYJEG"
 b = "MZRERYND"
 c = "RUYODBAH"
