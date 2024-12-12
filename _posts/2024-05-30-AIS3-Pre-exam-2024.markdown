@@ -24,17 +24,19 @@ hidden: false
 ![](/images/2024/05/S1fflXJE0.png)
 
 ### Three Dimensional Secret
+
 https://nraynaud.github.io/webgcode/
 ![](/images/2024/05/r1cc57kVA.png)
 
 ### Quantum Nim Heist
+
 - 按下3，可以強制讓電腦走一步
 ![](/images/2024/05/H1I594yNA.png)
 
 ### Emoji Console
 
 - source code
-```python=
+```
 #!/usr/local/bin/python3
 
 import os
@@ -161,7 +163,7 @@ cd flag;p:| python *
 ![](/images/2024/05/S1zKLDgE0.png)
 
 - `decode.py`
-```python=
+```
 a = "DHLIYJEG"
 b = "MZRERYND"
 c = "RUYODBAH"
@@ -259,7 +261,7 @@ print()
 
 - XXE
 
-```xml=
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE foo [ <!ELEMENT foo ANY >
 <!ENTITY xxe SYSTEM "file:///flag" >]>
@@ -305,7 +307,7 @@ print()
 - 題目只有黑白，因此每次上傳都有1/2機會。
 
 - 驗證的code
-```python=
+```
 from PIL import Image, ImageChops
 import hashlib,secrets
 
