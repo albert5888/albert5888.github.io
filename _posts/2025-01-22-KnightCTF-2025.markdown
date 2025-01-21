@@ -249,9 +249,11 @@ Route::get('/', function () {
 ```
 
 因為`/profile`只能用POST，直接存取網頁能發現到在Debug以及錯誤頁面
+
 ![image](/images/2025/01/Hkxhi_3DJe.png)
 
 在source code發現Flag在`.env`
+
 ![image](/images/2025/01/HJpoeFhw1g.png)
 
 在 `app/Http/Controllers/CalculatorController.php`，發現會根據.env限制字數上限
@@ -414,9 +416,11 @@ FLAG在`/home/intruder/.maybef149/m3.ini`
 `main` function
 
 ![image](/images/2025/01/B1RzbAhPJl.png)
+
 `transform_input` function
 
 ![image](/images/2025/01/HyeGbA3wJg.png)
+
 `do_fight` function
 
 ![image](/images/2025/01/HyIG-RnDyl.png)
