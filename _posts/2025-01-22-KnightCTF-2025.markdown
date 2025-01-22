@@ -312,7 +312,7 @@ public function calculate(Request $request)
 一個檔案 `kali-linux-2024.ova`
 一組cred (user權限) `username: siam` `password: pmsiam`
 
-首先先用Grub把權限提到root(可能不是預期解，在root的.zsh_history有發現一些讓人提權的東西)，發現有下圖這些使用者，每個使用者也都有一些檔案，如GPG、加密zip、一些binary等
+首先先用 Grub 把權限提到 root ，發現有下圖這些使用者，每個使用者也都有一些檔案，如GPG、加密zip、一些binary等
 
 ![image](/images/2025/01/Hynk7I3wJe.png)
 
