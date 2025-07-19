@@ -77,7 +77,10 @@ $ cat /home/albert5888/interest
     -	Social Engineering Risk in Design
     -	Improper Input Validation
 
-- 台灣電力公司 ([2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/2289/2323/2334/49686/))
+- 台灣電力公司 
+    -	[2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/2289/2323/2334/49686/)
+    -	[2024年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/2289/2323/2334/60730/)
+
 
 - 綠界科技ECPAY ([安全漏洞回報致謝](https://corp.ecpay.com.tw/bug-bounty-fame/))
     -	Cross-Site Request Forgery
