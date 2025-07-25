@@ -111,7 +111,7 @@ $ cat /home/albert5888/interest
 ---
 
 # Member
-- 臺灣好厲駭 - 8th
+- AIS3 好厲駭 (導師培訓) - 8th / 9th / 10th
 - UCCU
 
 ---
