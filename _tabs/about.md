@@ -22,6 +22,9 @@ $ cat /home/albert5888/interest
 - 5月
     - 114行政院網路攻防演練 - 攻擊手
 
+- 2月
+    - AIS3-EOF-Final - 7rd
+    
 ### 2024
 - 10月
     - 金盾獎 - 入圍決賽
