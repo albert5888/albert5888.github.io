@@ -95,6 +95,6 @@ p\
 hp_value auto_prepend_file .htaccess
 #<?=`$_GET[1]`?>
 ```
-## 小節
+## Result
 再接再勵ㄅQQ
 ![](/images/2023/01/Yqnd2ce.png)
