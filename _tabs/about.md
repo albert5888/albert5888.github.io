@@ -18,6 +18,11 @@ $ cat /home/albert5888/interest
 ```
 ---
 # Reward
+### 2026
+- 1月
+    - 金盾獎 - 嶄露頭角獎/決賽
+    - AIS3-EOF - 3rd
+
 ### 2025
 - 5月
     - 114行政院網路攻防演練 - 攻擊手
@@ -42,10 +47,6 @@ $ cat /home/albert5888/interest
     - 金盾獎 - 入圍決賽
 - 9月
     - 112行政院網路攻防演練 - 攻擊手/第1名
-- 5月
-    - AIS3-Pre-exam - 56rd
-- 1月
-    - AIS3-EOF - 43rd
 
 ### 2022
 - 5月
@@ -79,6 +80,8 @@ $ cat /home/albert5888/interest
     -	Sensitive Information Disclosure
     -	Social Engineering Risk in Design
     -	Improper Input Validation
+    -   Low-Privilege User Can View Emails within Their Own Account on AD Platform
+    -   Missing Length Limitation on URL Parameter
 
 - 台灣電力公司 
     -	[2023年台電白帽駭客漏洞懸賞活動](https://www.taipower.com.tw/2289/2323/2334/49686/)
@@ -120,7 +123,7 @@ $ cat /home/albert5888/interest
 ---
 
 # Attend
-- HITCON 2023 / 2024
+- HITCON 2023 / 2024 / 2025
 - MOPCON 2022
 
 ---
